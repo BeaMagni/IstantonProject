@@ -1,9 +1,7 @@
 
-from asyncore import read
 import numpy as np
 import math
 from numpy import linalg as la
-import matplotlib.pyplot as plt
 from scipy.special import factorial
 from numpy.polynomial import hermite
 
