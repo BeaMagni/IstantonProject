@@ -1,19 +1,49 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+#PLOT POTENSTIAL AND ENERGY LEVELS
+def energy_eigenvalues():
+    x = np.linspace(-2.5,2.5,1000)
+    V=(x**2-etha**2)**2
+    plt.ylim(0,10)
+    plt.xlabel("x")
+    plt.ylabel("V(x)")
+    plt.plot(x, V, '-')
+    energy_eigenvalues = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_eigenvalues.txt")
+    for n in range(4):
+        plt.axhline(y=energy_eigenvalues[n], color='red', linestyle='--')
+    plt.show()
+
+#PLOT ENERGY VARIATION
+def energy_variation():
+    for i in range(1,6):
+        f"E{i}" = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy{i}.txt")
+    plt.ylim(0,22)
+    plt.xlim(0.25,2)
+    plt.xlabel(r'$\eta$')
+    plt.ylabel("E")
+    plt.yticks(np.arange(0,25,5))
+    plt.plot(Etha, E_1, 'b-')
+    plt.plot(Etha, E_2, 'b-')
+    plt.plot(Etha, E_3, 'b-')
+    plt.plot(Etha, E_4, 'b-')
+    plt.plot(Etha, E_5, 'b-')
+    plt.plot(Etha, E_6, 'b-')
+    plt.show()
+    
 #PLOT GROUND STATE HISTOGRAM
-
-x = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/hist.txt")
-y = np.linspace(-2.5,2.5,100)
-ground_state = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/groundstate.txt")
-
-plt.plot(y,ground_state,color='lime',label='Exact')
-plt.hist(x, bins=100, density=True, histtype='step',label='Monte Carlo')
-plt.xlim(-2.1,2.1)
-plt.ylim(0,0.4)
-plt.xlabel('x')
-plt.ylabel(r'$|\Psi(x)|^2$')
-plt.show()
+def ground_state_hist():
+    x = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/hist.txt")
+    y = np.linspace(-2.5,2.5,100)
+    ground_state = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/groundstate.txt")
+    
+    plt.plot(y,ground_state,color='lime',label='Exact')
+    plt.hist(x, bins=100, density=True, histtype='step',label='Monte Carlo')
+    plt.xlim(-2.1,2.1)
+    plt.ylim(0,0.4)
+    plt.xlabel('x')
+    plt.ylabel(r'$|\Psi(x)|^2$')
+    plt.show()
 
 
 #PLOT CORRELATION FUNCTIONS
