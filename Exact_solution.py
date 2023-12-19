@@ -22,17 +22,15 @@ def diag(ndim, etha):
           H[n][n+4] = H[n+4][n] = x_4
 
     E, v = la.eigh(H)
+    for i in range(4):
+        np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/eigenvalue{i}.txt",E[i])
     return E,v
 
 #behaviour of the energy eigenvalues varying etha 
 def energy_variation(ndim):
     A = 1
-    vector1 = []
-    vector2 = []
-    vector3 = []
-    vector4 = []
-    vector5 = []
-    vector6 = []
+    for i in range(1,6):
+        f"vector{i}" = []
 
     Etha = np.linspace(0.001,2,1000)
 
@@ -61,19 +59,8 @@ def energy_variation(ndim):
       vector5.append(E[4])
       vector6.append(E[5])
 
-    plt.ylim(0,22)
-    plt.xlim(0.25,2)
-    plt.xlabel(r'$\eta$')
-    plt.ylabel("E")
-    plt.yticks(np.arange(0,25,5))
-    plt.plot(Etha, vector1, 'b-')
-    plt.plot(Etha, vector2, 'b-')
-    plt.plot(Etha, vector3, 'b-')
-    plt.plot(Etha, vector4, 'b-')
-    plt.plot(Etha, vector5, 'b-')
-    plt.plot(Etha, vector6, 'b-')
-    return plt.show()
-
+  for i in range(1,6):
+      np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy{i}.txt",f"vector{i}") #vedere se si può fare così
 
 def en_densities(ndim, etha, v):
     om_0= 4*etha
@@ -131,7 +118,8 @@ def correlation_fuctions(ndim, etha, tau, ntau, tau_array, dtau, E, v):
         j += 1
       j = 0
       i += 1
-    return corr_funct
+    for i in range(2):
+        np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x{i}_corr.txt",corr_function[i]) #da cambiare su plots
 
 def log_correlation(ndim, etha, tau, ntau, tau_array, dtau, E, v):
     log_corr_funct = np.zeros((3,ntau))
@@ -162,7 +150,8 @@ def log_correlation(ndim, etha, tau, ntau, tau_array, dtau, E, v):
         j += 1
       j = 0
       i += 1
-    return log_corr_funct
+    for i in range(2):
+        np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x{i}_corr.txt",log_corr_funct[i])
 
 def free_energy(E):
     temperature = np.linspace(0.01, 2.0, 999)
@@ -176,14 +165,7 @@ def free_energy(E):
 
         free_energy.append(t * np.log(Z))
         Z = 0.0
-    plt.yticks([-2.5,-2,-1.5,-1])
-    plt.xlim(0.05,2.5)
-    plt.ylim(-2.5,-1)
-    plt.xscale('log')
-    plt.ylabel('F')
-    plt.xlabel('T')
-    plt.plot(temperature, free_energy)
-    plt.show()
+    np.savetxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/free_energy.txt",free_energy)
 
 def hermite_coefficients(position,norm,ndim):
   coefficient = np.zeros(ndim)
@@ -196,13 +178,7 @@ def psi_ground_state(position, norm, ndim, v):
     for x in range(position.size):
         projections = np.multiply(v[:,0],hermite_coefficients(X[x],norm,ndim))
         ground_state[x] = pow(hermite.hermval(position[x]/norm,projections),2)
-    plt.xlim(-2.1,2.1)
-    plt.ylim(0,0.4)
-    plt.xlabel('x')
-    plt.ylabel(r'$|\Psi(x)|^2$')
-    plt.plot(position,ground_state,'b-')
-    plt.show()
-
+   np.savetxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/ground_state.txt",ground_state)
 #main
 ndim = int(input("Insert the dimention of the matrix: "))
 etha = float(input("Insert the value for the shift of the potential: "))
@@ -213,45 +189,15 @@ B = -2*etha**2-om_0**2/4
 C = etha**4
 c = 1/np.sqrt(om_0)
 energy_eigenvalues, energy_eigenvectors = diag(ndim,etha)
-x = np.linspace(-2.5,2.5,1000)
-V=(x**2-etha**2)**2
-
-plt.ylim(0,10)
-plt.xlabel("x")
-plt.ylabel("V(x)")
-plt.plot(x, V, '-')
-
-
-for n in range(4):
-  plt.axhline(y=energy_eigenvalues[n], color='red', linestyle='--')
-
-plt.show()
 
 energy_variation(ndim)
 
 euclidian_time = 2.5
 step = 100
 t_array, dt = np.linspace(0, euclidian_time, step, retstep=True)
-corr = correlation_fuctions(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
-log_corr= log_correlation(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
-plt.xlim(0,1.5)
-plt.ylim(0,8)
-plt.xlabel(r'$\tau$')
-plt.ylabel(r'$\langle x^n(0) x^n(\tau) \rangle$')
-plt.plot(t_array,corr[0],'r', label='n=1')
-plt.plot(t_array,corr[1],'b', label='n=2')
-plt.plot(t_array,corr[2],'g', label='n=3')
-plt.legend()
-plt.show()
-plt.xlim(0,1.5)
-plt.ylim(0,5)
-plt.xlabel(r'$\tau$')
-plt.ylabel(r'$\frac{d}{d\tau} \log\left\langle x^n(0) x^n(\tau) \right\rangle$')
-plt.plot(t_array,log_corr[0], 'r', label='n=1')
-plt.plot(t_array,log_corr[1], 'b', label='n=2')
-plt.plot(t_array,log_corr[2], 'g', label='n=3')
-plt.legend()
-plt.show()
+correlation_fuctions(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
+log_correlation(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
+
 free_energy(energy_eigenvalues)
 
 X = np.linspace(-2.5,2.5,100)
