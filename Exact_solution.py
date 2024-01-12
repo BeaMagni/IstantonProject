@@ -30,9 +30,6 @@ def diag(ndim, etha):
 def energy_variation(ndim):
     A = 1
     vector_dict = {}
-
-# Save vectors to a text file
-
     file_name = f"{key}.txt"
     np.savetxt(file_name, value)
 
