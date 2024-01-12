@@ -17,19 +17,23 @@ def energy_eigenvalues():
 #PLOT ENERGY VARIATION
 def energy_variation():
     Etha = np.linspace(0.001,2,1000)
-    vector_dict = {}
-    for i in range(6):
-        vector_name = f"energy_{i}"
-        file_name = f"{vector_name}.txt"
-        vector_data = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/{vector_name}.txt")
-        vector_dict[vector_name] = vector_data
+    E_1 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_1.txt")
+    E_2 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_2.txt")
+    E_3 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_3.txt")
+    E_4 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_4.txt")
+    E_5 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_5.txt")
+    E_6 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_6.txt")
     plt.ylim(0,22)
     plt.xlim(0.25,2)
     plt.xlabel(r'$\eta$')
     plt.ylabel("E")
     plt.yticks(np.arange(0,25,5))
-    for key, value in vector_dict.items():
-        plt.plot(Etha, value, 'b-')
+    plt.plot(Etha, E_1, 'b-')
+    plt.plot(Etha, E_2, 'b-')
+    plt.plot(Etha, E_3, 'b-')
+    plt.plot(Etha, E_4, 'b-')
+    plt.plot(Etha, E_5, 'b-')
+    plt.plot(Etha, E_6, 'b-')
     plt.show()
     
 #PLOT GROUND STATE HISTOGRAM
