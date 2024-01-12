@@ -29,9 +29,13 @@ def diag(ndim, etha):
 #behaviour of the energy eigenvalues varying etha 
 def energy_variation(ndim):
     A = 1
-    vector_dict = {}
-
-
+    vector1 = []
+    vector2 = []
+    vector3 = []
+    vector4 = []
+    vector5 = []
+    vector6 = []
+    
     Etha = np.linspace(0.001,2,1000)
 
     for i in range(len(Etha)):
@@ -52,15 +56,18 @@ def energy_variation(ndim):
           H[n][n+4] = H[n+4][n] = x_4
 
       E, _ = la.eigh(H)
-      vector_data = []  
-      for i in range(6):
-        vector_name = f"energy_{i}"
-        vector_data.append(E[i])
-        vector_dict[vector_name] = vector_data
-
-
-  for key, value in vector_dict.items():
-      np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/{key}.txt",value)
+      vector1.append(E[0])
+      vector2.append(E[1])
+      vector3.append(E[2])
+      vector4.append(E[3])
+      vector5.append(E[4])
+      vector6.append(E[5])
+    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{1}.txt",vector1)
+    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{2}.txt",vector2)
+    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{3}.txt",vector3)
+    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{4}.txt",vector4)
+    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{5}.txt",vector5)
+    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{6}.txt",vector6)
 
 def en_densities(ndim, etha, v):
     om_0= 4*etha
