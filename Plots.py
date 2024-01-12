@@ -18,10 +18,10 @@ def energy_eigenvalues():
 def energy_variation():
     vector_dict = {}
     for i in range(6):
-    vector_name = f"energy_{i}"
-    file_name = f"{vector_name}.txt"
-    vector_data = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/{vector_name}.txt")
-    vector_dict[vector_name] = vector_data
+        vector_name = f"energy_{i}"
+        file_name = f"{vector_name}.txt"
+        vector_data = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/{vector_name}.txt")
+        vector_dict[vector_name] = vector_data
     plt.ylim(0,22)
     plt.xlim(0.25,2)
     plt.xlabel(r'$\eta$')
