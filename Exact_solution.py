@@ -25,7 +25,8 @@ def diag(ndim, etha):
     E, v = la.eigh(H)
     for i in range(4):
         f.append(E[i])
-    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/eigenvalues.txt",f)
+    with open(output_path + '/eigenvalues.txt','w') as eigenv:
+        np.savetxt(eigenv,f)
     return E,v
 
 #behaviour of the energy eigenvalues varying etha 
@@ -64,12 +65,18 @@ def energy_variation(ndim):
       vector4.append(E[3])
       vector5.append(E[4])
       vector6.append(E[5])
-    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{1}.txt",vector1)
-    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{2}.txt",vector2)
-    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{3}.txt",vector3)
-    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{4}.txt",vector4)
-    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{5}.txt",vector5)
-    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_{6}.txt",vector6)
+    with open(output_path + '/energy_1.txt','w') as en1:
+        np.savetxt(en1,vector1)
+    with open(output_path + '/energy_2.txt','w') as en2:
+        np.savetxt(en2,vector2)
+    with open(output_path + '/energy_3.txt','w') as en3:
+        np.savetxt(en3,vector3)
+    with open(output_path + '/energy_4.txt','w') as en4:
+        np.savetxt(en4,vector4)
+    with open(output_path + '/energy_5.txt','w') as en5:
+        np.savetxt(en5,vector5)
+    with open(output_path + '/energy_6.txt','w') as en6:
+        np.savetxt(en6,vector6)
 
 def en_densities(ndim, etha, v):
     om_0= 4*etha
@@ -198,18 +205,16 @@ om_0 = 4*etha
 B = -2*etha**2-om_0**2/4
 C = etha**4
 c = 1/np.sqrt(om_0)
-energy_eigenvalues, energy_eigenvectors = diag(ndim,etha)
-
-energy_variation(ndim)
-
 euclidian_time = 2.5
 step = 100
 t_array, dt = np.linspace(0, euclidian_time, step, retstep=True)
-correlation_fuctions(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
-log_correlation(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
-
-free_energy(energy_eigenvalues)
-
 X = np.linspace(-2.5,2.5,100)
 norm = c*np.sqrt(2)
+output_path = './instanton project/exact'
+
+energy_eigenvalues, energy_eigenvectors = diag(ndim,etha)
+energy_variation(ndim)
+correlation_fuctions(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
+log_correlation(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
+free_energy(energy_eigenvalues)
 psi_ground_state(X,norm,ndim, energy_eigenvectors)
