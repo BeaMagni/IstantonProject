@@ -16,19 +16,19 @@ def energy_eigenvalues():
 
 #PLOT ENERGY VARIATION
 def energy_variation():
-    for i in range(1,6):
-        f"E{i}" = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy{i}.txt")
+    vector_dict = {}
+    for i in range(6):
+    vector_name = f"energy_{i}"
+    file_name = f"{vector_name}.txt"
+    vector_data = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/{vector_name}.txt")
+    vector_dict[vector_name] = vector_data
     plt.ylim(0,22)
     plt.xlim(0.25,2)
     plt.xlabel(r'$\eta$')
     plt.ylabel("E")
     plt.yticks(np.arange(0,25,5))
-    plt.plot(Etha, E_1, 'b-')
-    plt.plot(Etha, E_2, 'b-')
-    plt.plot(Etha, E_3, 'b-')
-    plt.plot(Etha, E_4, 'b-')
-    plt.plot(Etha, E_5, 'b-')
-    plt.plot(Etha, E_6, 'b-')
+    for key, value in vector_dict.items():
+        plt.plot(Etha, value, 'b-')
     plt.show()
     
 #PLOT GROUND STATE HISTOGRAM
