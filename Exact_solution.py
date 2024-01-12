@@ -30,8 +30,7 @@ def diag(ndim, etha):
 def energy_variation(ndim):
     A = 1
     vector_dict = {}
-    file_name = f"{key}.txt"
-    np.savetxt(file_name, value)
+
 
     Etha = np.linspace(0.001,2,1000)
 
