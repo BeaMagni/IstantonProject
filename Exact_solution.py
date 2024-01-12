@@ -52,9 +52,9 @@ def energy_variation(ndim):
           H[n][n+4] = H[n+4][n] = x_4
 
       E, _ = la.eigh(H)
+      vector_data = []  
       for i in range(6):
         vector_name = f"energy_{i}"
-        vector_data = []
         vector_data.append(E[i])
         vector_dict[vector_name] = vector_data
 
