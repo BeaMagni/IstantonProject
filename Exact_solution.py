@@ -10,6 +10,7 @@ from numpy.polynomial import hermite
 def diag(ndim, etha):
     
     H = np.zeros((ndim,ndim))
+    f = []
 
     for n in range(ndim):
         x = 3 * A * (c**4) * ((n+1)**2+n**2)+B * (c**2) * (2*n+1)+om_0 * (n+1/2)+C
@@ -23,7 +24,8 @@ def diag(ndim, etha):
 
     E, v = la.eigh(H)
     for i in range(4):
-        np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/eigenvalue{i}.txt",E[i])
+        f.append(E[i])
+    np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/eigenvalues.txt",f)
     return E,v
 
 #behaviour of the energy eigenvalues varying etha 
@@ -126,7 +128,8 @@ def correlation_fuctions(ndim, etha, tau, ntau, tau_array, dtau, E, v):
       j = 0
       i += 1
     for i in range(2):
-        np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x{i}_corr.txt",corr_function[i]) #da cambiare su plots
+        np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x{i}_corr.txt",corr_funct[i]) #da cambiare su plots
+        return corr_funct
 
 def log_correlation(ndim, etha, tau, ntau, tau_array, dtau, E, v):
     log_corr_funct = np.zeros((3,ntau))
