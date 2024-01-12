@@ -29,8 +29,12 @@ def diag(ndim, etha):
 #behaviour of the energy eigenvalues varying etha 
 def energy_variation(ndim):
     A = 1
-    for i in range(1,6):
-        f"vector{i}" = []
+    vector_dict = {}
+
+# Save vectors to a text file
+
+    file_name = f"{key}.txt"
+    np.savetxt(file_name, value)
 
     Etha = np.linspace(0.001,2,1000)
 
@@ -52,15 +56,15 @@ def energy_variation(ndim):
           H[n][n+4] = H[n+4][n] = x_4
 
       E, _ = la.eigh(H)
-      vector1.append(E[0])
-      vector2.append(E[1])
-      vector3.append(E[2])
-      vector4.append(E[3])
-      vector5.append(E[4])
-      vector6.append(E[5])
+      for i in range(6):
+        vector_name = f"energy_{i}"
+        vector_data = []
+        vector_data.append(E[i])
+        vector_dict[vector_name] = vector_data
 
-  for i in range(1,6):
-      np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy{i}.txt",f"vector{i}") #vedere se si può fare così
+
+  for key, value in vector_dict.items():
+      np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/{key}.txt",value)
 
 def en_densities(ndim, etha, v):
     om_0= 4*etha
