@@ -16,6 +16,7 @@ def energy_eigenvalues():
 
 #PLOT ENERGY VARIATION
 def energy_variation():
+    Etha = np.linspace(0.001,2,1000)
     vector_dict = {}
     for i in range(6):
         vector_name = f"energy_{i}"
