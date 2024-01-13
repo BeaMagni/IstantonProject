@@ -28,6 +28,6 @@ def main():
         F[b] += fn.free_energy_zero(beta[b],w0)
         F_err[b] /= beta[b]
 
-np.savetxt(output_path + '/temperature.txt',temperature)
-np.savetxt(output_path + '/free_energy.txt',F)
-np.savetxt(output_pat + '/free_energy_err.txt',F_err)
+    np.savetxt(output_path + '/temperature.txt',temperature)
+    np.savetxt(output_path + '/free_energy.txt',F)
+    np.savetxt(output_pat + '/free_energy_err.txt',F_err)
