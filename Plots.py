@@ -15,7 +15,7 @@ def potential_eigenvalues():
     plt.show()
 
 #PLOT ENERGY VARIATION
-def energy__eigenvalues_variation():
+def energy_eigenvalues_variation():
     Etha = np.linspace(0.001,2,1000)
     E_1 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_1.txt")
     E_2 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_2.txt")
