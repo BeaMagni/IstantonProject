@@ -2,12 +2,12 @@ import numpy as np
 from numba import njit
 import General_functions as fn
 
-N = 800
-a = 0.05
+N = int(input("Insert N, the dimension of the lattice: "))
+a = float(input("Insert the value for a, the lattice spacing: "))
 delta_x = 0.5
-n_equil = 100
-n_sweeps = 100000
-n_cooling_sweeps = 200
+n_equil = int(input("Insert the number of Monte Carlo equilibration sweeps: "))
+n_sweeps = int(input("Insert the number of Monte Carlo sweeps (must be bigger than the previous value): "))
+n_cooling_sweeps = int(input("Insert the number of cooling sweeps: "))
 count = n_cooling = n_tot = 0
 
 start = bool(input("Insert the desired start (0-cold, 1-hot): "))
