@@ -1,6 +1,6 @@
 import numpy as np
 from numba import njit
-import FUNCTIONS as fn
+import General_functions as fn
 
 N = 800
 a = 0.05
@@ -37,8 +37,8 @@ for etha in range(14,17,1):
                 action = fn.calculate_action(x_cool,etha,a)
                 action_cooling[u] += action
                 action2_cooling[u] += np.power(action,2)
-    action_av, action_err = fn.stat_av_var(action_cooling, action2_cooling,n_cooling)
-    n_tot_av, n_tot_err = fn.stat_av_var(n_tot_sum,n2_tot_sum,n_cooling)
+    action_av, action_err = fn.average_std(action_cooling, action2_cooling,n_cooling)
+    n_tot_av, n_tot_err = fn.average_std(n_tot_sum,n2_tot_sum,n_cooling)
     action_av = np.divide(action_av,n_tot_av)
     action_err = np.divide(action_err,n_tot_av)
     n_tot_av /= N*a
