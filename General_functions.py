@@ -58,7 +58,7 @@ def free_energy_zero(Beta,w0):
     return f0
 
 @njit
-def stat_av_var(observable,observable2,n_data):
+def average_std(observable,observable2,n_data):
     observable_av = observable/n_data
     observable_err = observable2/np.power(n_data,2)
     observable_err -= np.power(observable_av,2)/n_data
