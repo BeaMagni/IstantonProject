@@ -58,9 +58,9 @@ for j in range(n_sweeps-n_equil):
                 x2_cor_sum2[p] += np.power(x_cor,4)
                 x3_cor_sum2[p] += np.power(x_cor,6)
 
-x_cor_av, x_cor_err = fn.stat_av_var(x_cor_sum,x_cor_sum2,count)
-x2_cor_av, x2_cor_err = fn.stat_av_var(x2_cor_sum,x2_cor_sum2,count)
-x3_cor_av, x3_cor_err = fn.stat_av_var(x3_cor_sum,x3_cor_sum2,count)
+x_cor_av, x_cor_err = fn.average_std(x_cor_sum,x_cor_sum2,count)
+x2_cor_av, x2_cor_err = fn.average_std(x2_cor_sum,x2_cor_sum2,count)
+x3_cor_av, x3_cor_err = fn.average_std(x3_cor_sum,x3_cor_sum2,count)
 der_log_x, der_log_x_err = fn.derivative_log(x_cor_av,x_cor_err,a)
 x2_cor_av_sub = x2_cor_av-x2_cor_av[-1]
 x2_cor_err_sub = np.sqrt(np.power(x2_cor_err,2)+np.power(x2_cor_err[-1],2))
