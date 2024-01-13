@@ -1,7 +1,7 @@
 import numpy as np
 from numba import njit
 from scipy.integrate import simps
-import FUNCTIONS as fn
+import General_functions as fn
 
 etha = 1.4
 w0 = 5.6
