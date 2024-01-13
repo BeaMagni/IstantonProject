@@ -1,6 +1,6 @@
 import numpy as np
 from numba import njit
-import FUNCTIONS as fn
+import General_functions as fn
 
 N = 800
 etha = 1.4
