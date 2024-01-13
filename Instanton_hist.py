@@ -2,14 +2,14 @@ import numpy as np
 from numba import njit
 import General_functions as fn
 
-N = 800
-etha = 1.4
-w0 = 5.6
-a = 0.05
+N = int(input("Insert N, the dimension of the lattice: "))
+etha = float(input("Insert the value for etha, the shift of the potential: "))
+w0 = 4*etha
+a = float(input("Insert the value for a, the lattice spacing: "))
 delta_x = 0.5
-n_equil = 100
-n_sweeps = 100000
-n_cooling_sweeps = 10
+n_equil = int(input("Insert the number of Monte Carlo equilibration sweeps: "))
+n_sweeps = int(input("Insert the number of Monte Carlo sweeps (must be bigger than the previous value): "))
+n_cooling_sweeps = int(input("Insert the number of cooling sweeps: "))
 
 start = bool(input("Insert the desired start (0-cold, 1-hot): "))
 
