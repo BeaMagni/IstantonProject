@@ -4,6 +4,7 @@ import math
 from numpy import linalg as la
 from scipy.special import factorial
 from numpy.polynomial import hermite
+import General_funtions as fn
 
 
 #building of the hamiltonian of the anharmonic oscillator and computation of energy eigenvalues E and eigenvector v
@@ -211,6 +212,7 @@ t_array, dt = np.linspace(0, euclidian_time, step, retstep=True)
 X = np.linspace(-2.5,2.5,100)
 norm = c*np.sqrt(2)
 output_path = './instanton project/exact'
+fn.path_creation(output_path)
 
 energy_eigenvalues, energy_eigenvectors = diag(ndim,etha)
 energy_variation(ndim)
