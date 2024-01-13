@@ -1,5 +1,6 @@
 import numpy as np
 from numba import njit
+from pathlib import Path
 
 @njit
 def initialize_lattice(n,etha,start):
@@ -164,3 +165,8 @@ def find_instantons(x,a):
                 pos_i.append(x_i)
         x0 = x[h]
     return n_i,n_ai,pos_i,pos_ai
+
+def path_creation(output_path):
+    path = Path(output_path)
+    if not path.is_dir():
+        path.mkdir(parents=True, exist_ok=True)
