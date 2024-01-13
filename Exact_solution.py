@@ -197,17 +197,19 @@ def psi_ground_state(position, norm, ndim, v):
         projections = np.multiply(v[:,0],hermite_coefficients(X[x],norm,ndim))
         ground_state[x] = pow(hermite.hermval(position[x]/norm,projections),2)
    np.savetxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/ground_state.txt",ground_state)
+
 #main
+
 ndim = int(input("Insert the dimention of the matrix: "))
 etha = float(input("Insert the value for the shift of the potential: "))
+euclidian_time = float(input("Insert the value for the euclidean time: "))
+step = int(input("Insert the value for the time step: "))
 om_0 = c = C = B = 0
 A = 1
 om_0 = 4*etha
 B = -2*etha**2-om_0**2/4
 C = etha**4
 c = 1/np.sqrt(om_0)
-euclidian_time = 2.5
-step = 100
 t_array, dt = np.linspace(0, euclidian_time, step, retstep=True)
 X = np.linspace(-2.5,2.5,100)
 norm = c*np.sqrt(2)
@@ -216,7 +218,9 @@ fn.path_creation(output_path)
 
 energy_eigenvalues, energy_eigenvectors = diag(ndim,etha)
 energy_variation(ndim)
+'''
 correlation_fuctions(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
 log_correlation(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
 free_energy(energy_eigenvalues)
 psi_ground_state(X,norm,ndim, energy_eigenvectors)
+'''
