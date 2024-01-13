@@ -66,8 +66,8 @@ def energy_variation(ndim):
       vector4.append(E[3])
       vector5.append(E[4])
       vector6.append(E[5])
-    with open(output_path + '/energy_1.txt','w') as en1:
-        np.savetxt(en1,vector1)
+        
+    np.savetxt(output_path + '/energy_1.txt',vector1)
     with open(output_path + '/energy_2.txt','w') as en2:
         np.savetxt(en2,vector2)
     with open(output_path + '/energy_3.txt','w') as en3:
