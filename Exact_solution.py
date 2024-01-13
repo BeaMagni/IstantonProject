@@ -4,7 +4,7 @@ import math
 from numpy import linalg as la
 from scipy.special import factorial
 from numpy.polynomial import hermite
-import General_funtions as fn
+import General_functions as fn
 
 
 #building of the hamiltonian of the anharmonic oscillator and computation of energy eigenvalues E and eigenvector v
