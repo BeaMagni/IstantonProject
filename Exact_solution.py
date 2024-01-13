@@ -196,7 +196,7 @@ def psi_ground_state(position, norm, ndim, v):
     for x in range(position.size):
         projections = np.multiply(v[:,0],hermite_coefficients(X[x],norm,ndim))
         ground_state[x] = pow(hermite.hermval(position[x]/norm,projections),2)
-   np.savetxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/ground_state.txt",ground_state)
+    np.savetxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/ground_state.txt",ground_state)
 
 #main
 
