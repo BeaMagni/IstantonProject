@@ -1,4 +1,3 @@
-
 import numpy as np
 import math
 from numpy import linalg as la
@@ -8,7 +7,7 @@ import General_functions as fn
 
 
 #building of the hamiltonian of the anharmonic oscillator and computation of energy eigenvalues E and eigenvector v
-def diag(ndim, etha):
+def diag(ndim, etha, A, B, C, c):
     
     H = np.zeros((ndim,ndim))
     f = []
@@ -193,28 +192,28 @@ def psi_ground_state(position, norm, ndim, v):
     np.savetxt(output_path + '/ground_state.txt',ground_state)
 
 #main
-
-ndim = int(input("Insert the dimention of the matrix: "))
-etha = float(input("Insert the value for the shift of the potential: "))
-euclidian_time = float(input("Insert the value for the euclidean time: "))
-step = int(input("Insert the value for the time step: "))
-om_0 = c = C = B = 0
-A = 1
-om_0 = 4*etha
-B = -2*etha**2-om_0**2/4
-C = etha**4
-c = 1/np.sqrt(om_0)
-t_array, dt = np.linspace(0, euclidian_time, step, retstep=True)
-X = np.linspace(-2.5,2.5,100)
-norm = c*np.sqrt(2)
-output_path = './instanton project/exact'
-fn.path_creation(output_path)
-
-energy_eigenvalues, energy_eigenvectors = diag(ndim,etha)
-energy_variation(ndim)
-
-correlation_fuctions(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
-log_correlation(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
-free_energy(energy_eigenvalues)
-psi_ground_state(X,norm,ndim, energy_eigenvectors)
+def main():
+    ndim = int(input("Insert the dimention of the matrix: "))
+    etha = float(input("Insert the value for the shift of the potential: "))
+    euclidian_time = float(input("Insert the value for the euclidean time: "))
+    step = int(input("Insert the value for the time step: "))
+    om_0 = c = C = B = 0
+    A = 1
+    om_0 = 4*etha
+    B = -2*etha**2-om_0**2/4
+    C = etha**4
+    c = 1/np.sqrt(om_0)
+    t_array, dt = np.linspace(0, euclidian_time, step, retstep=True)
+    X = np.linspace(-2.5,2.5,100)
+    norm = c*np.sqrt(2)
+    output_path = './instanton project/exact'
+    fn.path_creation(output_path)
+    
+    energy_eigenvalues, energy_eigenvectors = diag(ndim,etha, A, B, C, c)
+    energy_variation(ndim)
+    
+    correlation_fuctions(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
+    log_correlation(ndim, etha, euclidian_time, step, t_array, dt, energy_eigenvalues, energy_eigenvectors)
+    free_energy(energy_eigenvalues)
+    psi_ground_state(X,norm,ndim, energy_eigenvectors)
 
