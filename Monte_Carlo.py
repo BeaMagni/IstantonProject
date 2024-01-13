@@ -34,27 +34,12 @@ count = 0
 
 start = bool(input("Insert the desired start (0-cold, 1-hot): "))
 
-fn.initialize_lattice(N,etha,start)
-
-fn.metropolis(x, a, delta_x, etha)
-  
-@njit
-def derivative_log(x,x_err,a):
-  derivative_log = np.zeros(29)
-  derivative_log_err = np.zeros(29)
-
-  for t in range(29):
-    derivative_log[t] = -(x[t+1]-x[t])/(x[t]*a)
-    derivative_log_err[t] = np.sqrt(np.power(x_err[t+1]/x[t],2)+np.power(x_err[t]*x[t+1]/np.power(x[t],2),2))/a
-
-  return derivative_log, derivative_log_err
-
-x = initialize_lattice(N,etha,start)
+x = fn.initialize_lattice(N,etha,start)
 
 for _ in range(n_equil):
-    x = metropolis(x, a, delta_x, etha)
+    x = fn.metropolis(x, a, delta_x, etha)
 for j in range(n_sweeps - n_equil):
-  x = metropolis(x, a, delta_x, etha)
+  x = fn.metropolis(x, a, delta_x, etha)
   if j%int((n_sweeps-n_equil)/2) == 0:
     np.savetxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/montecarlo.txt", x)
   for _ in range(5):
@@ -69,14 +54,14 @@ for j in range(n_sweeps - n_equil):
       x2_cor_sum2[p] += np.power(x_cor,4)
       x3_cor_sum2[p] += np.power(x_cor,6)
 
-x_cor_av, x_cor_err = stat_av_var(x_cor_sum,x_cor_sum2,count)
-x2_cor_av, x2_cor_err = stat_av_var(x2_cor_sum,x2_cor_sum2,count)
-x3_cor_av, x3_cor_err = stat_av_var(x3_cor_sum,x3_cor_sum2,count)
-der_log_x, der_log_x_err = derivative_log(x_cor_av,x_cor_err,a)
+x_cor_av, x_cor_err = fn.average_std(x_cor_sum,x_cor_sum2,count)
+x2_cor_av, x2_cor_err = fn.average_std(x2_cor_sum,x2_cor_sum2,count)
+x3_cor_av, x3_cor_err = fn.average_std(x3_cor_sum,x3_cor_sum2,count)
+der_log_x, der_log_x_err = fn.derivative_log(x_cor_av,x_cor_err,a)
 x2_cor_av_sub = x2_cor_av-x2_cor_av[-1]
 x2_cor_err_sub = np.sqrt(np.power(x2_cor_err,2)+np.power(x2_cor_err[-1],2))
-der_log_x2, der_log_x2_err = derivative_log(x2_cor_av_sub,x2_cor_err,a)
-der_log_x3, der_log_x3_err = derivative_log(x3_cor_av,x3_cor_err,a)
+der_log_x2, der_log_x2_err = fn.derivative_log(x2_cor_av_sub,x2_cor_err,a)
+der_log_x3, der_log_x3_err = fn.derivative_log(x3_cor_av,x3_cor_err,a)
 
 np.savetxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/x_cor_av.txt",x_cor_av)
 np.savetxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/x2_cor_av.txt",x2_cor_av)
