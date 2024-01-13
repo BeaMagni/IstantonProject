@@ -14,17 +14,17 @@ print(tabulate(rows, headers=headers))
 
 num = input('Select the code to run: ')
 if num == 1:
-    Exact_solution.
+    Exact_solution.run()
 if num == 2:
-    Monte_Carlo.
+    Monte_Carlo.run()
 if num == 3:
-    MC_cooling.    
+    MC_cooling.run()
 if num == 4:
-    Free_energy_as.
+    Free_energy_as.run()
 if num == 5:
-    Instanton_hist.
+    Instanton_hist.run()
 if num == 6:
-    Instanton_action.
+    Instanton_action.run()
 if num == 7:
     head = ["NUMBER", "PLOT"]
     lines = [[1, "Anharmonic potential"], [2, "Energy eigenvalues"], [3, "Ground state wavefunction"], [4, "Monte Carlo correlators"], [5, "Monte Carlo log correlatos"], [6, "Euclidean path"], 
@@ -33,29 +33,29 @@ if num == 7:
     print(tabulate(lines, headers=head))
     plot = imput('Select the plot to show: ')
     if plot == 1:
-      Plots.
+      Plots.potential_eigenvalues()
     if plot == 2:
-      Plots.
+      Plots.energy_eigenvalues_variation()
     if plot == 3:
-      Plots.
+      Plots.ground_state_hist()
     if plot == 4:
-      Plots.
+      Plots.correlation_functions()
     if plot == 5:
-      Plots.
+      Plots.log_correlation_functions()
     if plot == 6:
-      Plots.
+      Plots.euclidean_path()
     if plot == 7:
-      Plots.
+      Plots.correlation_functions_cooling()
     if plot == 8:
-      Plots.
+      Plots.log_correlation_functions_cooling()
     if plot == 9:
-      Plots.
+      Plots.free_energy()
     if plot == 10:
-      Plots.
+      Plots.instanton_distribution()
     if plot == 11:
-      Plots.
+      Plots.instanton_density()
     if plot == 12:
-      Plots.
+      Plots.instanton_action()
 
 
 
