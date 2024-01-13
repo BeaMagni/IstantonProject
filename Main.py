@@ -19,15 +19,15 @@ while stop == False:
     if num == 1:
         Exact_solution.main()
     elif num == 2:
-        Monte_Carlo.run()
+        Monte_Carlo.main()
     elif num == 3:
-        MC_cooling.run()
+        MC_cooling.main()
     elif num == 4:
-        Free_energy_as.run()
+        Free_energy_as.main()
     elif num == 5:
-        Instanton_hist.run()
+        Instanton_hist.main()
     elif num == 6:
-        Instanton_action.run()
+        Instanton_action.main()
     elif num == 7:
         stop_plot = False
         while stop_plot == False:
