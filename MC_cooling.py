@@ -4,7 +4,7 @@ import General_functions as fn
 
 N = int(input("Insert N, the dimension of the lattice: "))
 etha = float(input("Insert the value for etha, the shift of the potential: "))
-w0 = float(input("Insert the value for omega0, the frequency of the harmonic oscillator (4*etha): "))
+w0 = 4*etha
 a = float(input("Insert the value for a, the lattice spacing: "))
 delta_x = 0.5
 n_equil = int(input("Insert the number of Monte Carlo equilibration sweeps: "))
