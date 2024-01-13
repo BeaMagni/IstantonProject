@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #PLOT POTENSTIAL AND ENERGY LEVELS
-def energy_eigenvalues():
+def potential_eigenvalues():
     x = np.linspace(-2.5,2.5,1000)
     V=(x**2-etha**2)**2
     plt.ylim(0,10)
@@ -15,7 +15,7 @@ def energy_eigenvalues():
     plt.show()
 
 #PLOT ENERGY VARIATION
-def energy_variation():
+def energy__eigenvalues_variation():
     Etha = np.linspace(0.001,2,1000)
     E_1 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_1.txt")
     E_2 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_2.txt")
