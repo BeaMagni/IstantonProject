@@ -1,5 +1,6 @@
 import numpy as np
 from numba import njit
+import General_functions as fn
 
 N = 800
 a = 0.05
@@ -33,40 +34,10 @@ count = 0
 
 start = bool(input("Insert the desired start (0-cold, 1-hot): "))
 
-@njit
-def initialize_lattice(n,etha,start):
-    if start is True:
-        x = np.zeros(n)
-        for k in range(n):
-            x[k] = -etha
-        return x
-    elif start is False:
-        x = np.random.uniform(-etha,etha,size = n)
-        x[0] = x[-2]
-        x[-1] = x[1]
-        return x
+fn.initialize_lattice(N,etha,start)
 
-@njit
-def metropolis(x, a, delta_x, etha):
-  for i in range(1,x.size-1):
-    S = (1/(4*a))*(np.power((x[i]-x[i-1]),2)+np.power((x[i+1]-x[i]),2)) + a*np.power((np.power(x[i],2) - np.power(etha,2)),2)
-    new_x = x[i] + delta_x*(2.0*np.random.uniform(0.0,1.0)-1.0)
-    new_S = (1/(4*a))*(np.power((new_x-x[i-1]),2)+np.power((x[i+1]-new_x),2)) + a*np.power((np.power(new_x,2) - np.power(etha,2)),2)
-    delta_S = np.exp(S-new_S)
-    if(delta_S > np.random.uniform(0.0,1.0)):
-        x[i] = new_x
-  x[0] = x[-2]
-  x[-1] = x[1]
-  return x
-
-@njit
-def stat_av_var(observable,observable2,n_data):
-    observable_av = observable/n_data
-    observable_err = observable2/np.power(n_data,2)
-    observable_err -= np.power(observable_av,2)/n_data
-    observable_err = np.sqrt(observable_err)
-    return observable_av,observable_err
-
+fn.metropolis(x, a, delta_x, etha)
+  
 @njit
 def derivative_log(x,x_err,a):
   derivative_log = np.zeros(29)
