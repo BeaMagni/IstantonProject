@@ -130,8 +130,8 @@ def correlation_fuctions(ndim, etha, tau, ntau, tau_array, dtau, E, v):
         j += 1
       j = 0
       i += 1
-    for i in range(2):
-        np.savetxt(output_path + f'/x{i}_corr.txt',corr_funct[i]) #da cambiare su plots
+    for i in range(3):
+        np.savetxt(output_path + f'/x{i+1}_corr.txt',corr_funct[i]) 
         return corr_funct
 
 def log_correlation(ndim, etha, tau, ntau, tau_array, dtau, E, v):
@@ -163,8 +163,8 @@ def log_correlation(ndim, etha, tau, ntau, tau_array, dtau, E, v):
         j += 1
       j = 0
       i += 1
-    for i in range(2):
-        np.savetxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x{i}_corr.txt",log_corr_funct[i])
+    for i in range(3):
+        np.savetxt(output_path + f"/log_x{i+1}_corr.txt",log_corr_funct[i])
 
 def free_energy(E):
     temperature = np.linspace(0.01, 2.0, 999)
