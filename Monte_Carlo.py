@@ -34,6 +34,8 @@ def main():
     count = 0
     
     start = bool(input("Insert the desired start (0-cold, 1-hot): "))
+    output_path = './instanton_project/monte_carlo'
+    fn.path_creation(output_path)
     
     x = fn.initialize_lattice(N,etha,start)
     
@@ -42,7 +44,7 @@ def main():
     for j in range(n_sweeps - n_equil):
       x = fn.metropolis(x, a, delta_x, etha)
       if j%int((n_sweeps-n_equil)/2) == 0:
-        np.savetxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/montecarlo.txt", x)
+        np.savetxt(output_path + "/montecarlo.txt", x)
       for _ in range(5):
         count += 1
         p0 = int((N-30)*random.uniform(0.0,1.0))
@@ -64,16 +66,14 @@ def main():
     der_log_x2, der_log_x2_err = fn.derivative_log(x2_cor_av_sub,x2_cor_err,a)
     der_log_x3, der_log_x3_err = fn.derivative_log(x3_cor_av,x3_cor_err,a)
 
-    output_path = './instanton_project/monte_carlo'
-    fn.path_creation(output_path)
-    np.savetxt(output_path + '/x_cor_av.txt',x_cor_av)
+    np.savetxt(output_path + '/x1_cor_av.txt',x_cor_av)
     np.savetxt(output_path + '/x2_cor_av.txt',x2_cor_av)
     np.savetxt(output_path + '/x3_cor_av.txt',x3_cor_av)
-    np.savetxt(output_path + '/x_cor_err.txt',x_cor_err)
+    np.savetxt(output_path + '/x1_cor_err.txt',x_cor_err)
     np.savetxt(output_path + '/x2_cor_err.txt',x2_cor_err)
     np.savetxt(output_path + '/x3_cor_err.txt',x3_cor_err)
-    np.savetxt(output_path + '/der_log_x.txt',der_log_x)
-    np.savetxt(output_path + '/der_log_x_err.txt',der_log_x_err)
+    np.savetxt(output_path + '/der_log_x1.txt',der_log_x)
+    np.savetxt(output_path + '/der_log_x1_err.txt',der_log_x_err)
     np.savetxt(output_path + '/der_log_x2.txt',der_log_x2)
     np.savetxt(output_path + '/der_log_x2_err.txt',der_log_x2_err)
     np.savetxt(output_path + '/der_log_x3.txt',der_log_x3)
