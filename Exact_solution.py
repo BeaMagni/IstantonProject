@@ -5,7 +5,7 @@ from scipy.special import factorial
 from numpy.polynomial import hermite
 import General_functions as fn
 
-output_path = './instanton project/exact'
+output_path = './instanton_project/exact'
 fn.path_creation(output_path)
 
 #building of the hamiltonian of the anharmonic oscillator and computation of energy eigenvalues E and eigenvector v
