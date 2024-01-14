@@ -43,8 +43,8 @@ def main():
         x = fn.metropolis(x, a, delta_x, etha)
     for j in range(n_sweeps - n_equil):
       x = fn.metropolis(x, a, delta_x, etha)
-      if j%int((n_sweeps-n_equil)/2) == 0:
-        np.savetxt(output_path + "/montecarlo.txt", x)
+      if j%50 == 0:
+        np.savetxt(output_path + "/montecarlo_hist.txt", x)
       for _ in range(5):
         count += 1
         p0 = int((N-30)*random.uniform(0.0,1.0))
