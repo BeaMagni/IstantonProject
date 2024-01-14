@@ -9,7 +9,7 @@ def potential_eigenvalues():
     plt.xlabel("x")
     plt.ylabel("V(x)")
     plt.plot(x, V, '-')
-    energy_eigenvalues = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_eigenvalues.txt")
+    energy_eigenvalues = np.loadtxt("./instanton_project/exact/eigenvalues.txt")
     for n in range(4):
         plt.axhline(y=energy_eigenvalues[n], color='red', linestyle='--')
     plt.show()
@@ -17,12 +17,12 @@ def potential_eigenvalues():
 #PLOT ENERGY VARIATION
 def energy_eigenvalues_variation():
     Etha = np.linspace(0.001,2,1000)
-    E_1 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_1.txt")
-    E_2 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_2.txt")
-    E_3 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_3.txt")
-    E_4 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_4.txt")
-    E_5 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_5.txt")
-    E_6 = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/energy_6.txt")
+    E_1 = np.loadtxt("./instanton_project/exact/energy_1.txt")
+    E_2 = np.loadtxt("./instanton_project/exact/energy_2.txt")
+    E_3 = np.loadtxt("./instanton_project/exact/energy_3.txt")
+    E_4 = np.loadtxt("./instanton_project/exact/energy_4.txt")
+    E_5 = np.loadtxt("./instanton_project/exact/energy_5.txt")
+    E_6 = np.loadtxt("./instanton_project/exact/energy_6.txt")
     plt.ylim(0,22)
     plt.xlim(0.25,2)
     plt.xlabel(r'$\eta$')
@@ -38,9 +38,9 @@ def energy_eigenvalues_variation():
     
 #PLOT GROUND STATE HISTOGRAM
 def ground_state_hist():
-    x = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/hist.txt")
+    x = np.loadtxt("./instanton_project/monte_carlo/montecarlo_hist.txt")
     y = np.linspace(-2.5,2.5,100)
-    ground_state = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/groundstate.txt")
+    ground_state = np.loadtxt("./instanton_project/exact/ground_state.txt")
     
     plt.plot(y,ground_state,color='lime',label='Exact')
     plt.hist(x, bins=100, density=True, histtype='step',label='Monte Carlo')
@@ -53,15 +53,15 @@ def ground_state_hist():
 #PLOT CORRELATION FUNCTIONS
 
 def correlation_functions():
-    x = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/x_cor_av.txt")
-    x2 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/x2_cor_av.txt")
-    x3 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/x3_cor_av.txt")
-    x_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/x_cor_std.txt")
-    x2_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/x2_cor_std.txt")
-    x3_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/x3_cor_std.txt")
-    X = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x_cor.txt")
-    X2 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x2_cor.txt")
-    X3 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x3_cor.txt")
+    x1 = np.loadtxt("./instanton_project/monte_carlo/x1_cor_av.txt")
+    x2 = np.loadtxt("./instanton_project/monte_carlo/x2_cor_av.txt")
+    x3 = np.loadtxt("./instanton_project/monte_carlo/x3_cor_av.txt")
+    x1_err = np.loadtxt("./instanton_project/monte_carlo/x1_cor_err.txt")
+    x2_err = np.loadtxt("./instanton_project/monte_carlo/x2_cor_err.txt")
+    x3_err = np.loadtxt("./instanton_project/monte_carlo/x3_cor_err.txt")
+    X1 = np.loadtxt("./instanton projec/exact/x1_corr.txt")
+    X2 = np.loadtxt("./instanton projec/exact/x2_corr.txt")
+    X3 = np.loadtxt("./instanton projec/exact/x3_corr.txt")
     tau = np.linspace(0,1.5,30)
     Tau = np.linspace(0, 2.5, 100)
     
@@ -69,10 +69,10 @@ def correlation_functions():
     plt.ylim(0,8)
     plt.xlabel(r'$\tau$')
     plt.ylabel(r'$\langle x^n(0) x^n(\tau) \rangle$')
-    plt.plot(Tau,X, 'b')
+    plt.plot(Tau,X1, 'b')
     plt.plot(Tau,X2, 'r')
     plt.plot(Tau,X3, 'g')
-    plt.errorbar(tau,x,yerr=x_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
+    plt.errorbar(tau,x1,yerr=x1_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
     plt.errorbar(tau,x2,yerr=x2_err,fmt='o', color='red', markerfacecolor='none', label='n=2')
     plt.errorbar(tau,x3,yerr=x3_err,fmt='o', color='green', markerfacecolor='none', label='n=3')
     plt.legend()
@@ -81,15 +81,15 @@ def correlation_functions():
 #PLOT LOG CORRELATION FUNCTIONS
 
 def log_correlation_functions():
-    x = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/der_log_x.txt")
-    x2 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/der_log_x2.txt")
-    x3 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/der_log_x3.txt")
-    x_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/der_log_x_err.txt")
-    x2_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/der_log_x2_err.txt")
-    x3_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/montecarlo/der_log_x3_err.txt")
-    X = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/log_x_cor.txt")
-    X2 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/log_x2_cor.txt")
-    X3 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/log_x3_cor.txt")
+    x1 = np.loadtxt("./instanton_project/monte_carlo/der_log_x1.txt")
+    x2 = np.loadtxt("./instanton_project/monte_carlo/der_log_x2.txt")
+    x3 = np.loadtxt("./instanton_project/monte_carlo/der_log_x3.txt")
+    x1_err = np.loadtxt("./instanton_project/monte_carlo/der_log_x1_err.txt")
+    x2_err = np.loadtxt("./instanton_project/monte_carlo/der_log_x2_err.txt")
+    x3_err = np.loadtxt("./instanton_project/monte_carlo/der_log_x3_err.txt")
+    X1 = np.loadtxt("./instanton projec/exact/log_x1_corr.txt")
+    X2 = np.loadtxt("./instanton projec/exact/log_x2_corr.txt")
+    X3 = np.loadtxt("./instanton projec/exact/log_x3_corr.txt")
     tau = np.linspace(0,1.5,29)
     Tau = np.linspace(0, 2.5, 100)
     
@@ -97,10 +97,10 @@ def log_correlation_functions():
     plt.ylim(0,5)
     plt.xlabel(r'$\tau$')
     plt.ylabel(r'$\frac{d}{d\tau} \log\left\langle x^n(0) x^n(\tau) \right\rangle$')
-    plt.plot(Tau,X, 'b')
+    plt.plot(Tau,X1, 'b')
     plt.plot(Tau,X2, 'r')
     plt.plot(Tau,X3, 'g')
-    plt.errorbar(tau,x,yerr=x_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
+    plt.errorbar(tau,x1,yerr=x1_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
     plt.errorbar(tau,x2,yerr=x2_err,fmt='o', color='red', markerfacecolor='none', label='n=2')
     plt.errorbar(tau,x3,yerr=x3_err,fmt='o', color='green', markerfacecolor='none', label='n=3')
     plt.legend()
@@ -109,15 +109,15 @@ def log_correlation_functions():
 #PLOT COOLED CORRELATION FUNCTIONS
 
 def correlation_functions_cooling():
-    x = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/x_cor_av.txt")
-    x2 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/x2_cor_av.txt")
-    x3 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/x3_cor_av.txt")
-    x_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/x_cor_std.txt")
-    x2_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/x2_cor_std.txt")
-    x3_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/x3_cor_std.txt")
-    X = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x_cor.txt")
-    X2 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x2_cor.txt")
-    X3 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/x3_cor.txt")
+    x1 = np.loadtxt("./instanton_project/cooling/x1_cor_av.txt")
+    x2 = np.loadtxt("./instanton_project/cooling/x2_cor_av.txt")
+    x3 = np.loadtxt("./instanton_project/cooling/x3_cor_av.txt")
+    x1_err = np.loadtxt("./instanton_project/cooling/x1_cor_err.txt")
+    x2_err = np.loadtxt("./instanton_project/cooling/x2_cor_err.txt")
+    x3_err = np.loadtxt("./instanton_project/cooling/x3_cor_err.txt")
+    X1 = np.loadtxt("./instanton projec/exact/x1_cor.txt")
+    X2 = np.loadtxt("./instanton projec/exact/x2_cor.txt")
+    X3 = np.loadtxt("./instanton projec/exact/x3_cor.txt")
     tau = np.linspace(0,1.5,30)
     Tau = np.linspace(0, 2.5, 100)
     
@@ -128,7 +128,7 @@ def correlation_functions_cooling():
     plt.plot(Tau,X, 'b')
     plt.plot(Tau,X2, 'r')
     plt.plot(Tau,X3, 'g')
-    plt.errorbar(tau,x,yerr=x_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
+    plt.errorbar(tau,x1,yerr=x1_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
     plt.errorbar(tau,x2,yerr=x2_err,fmt='o', color='red', markerfacecolor='none', label='n=2')
     plt.errorbar(tau,x3,yerr=x3_err,fmt='o', color='green', markerfacecolor='none', label='n=3')
     plt.legend()
@@ -137,15 +137,15 @@ def correlation_functions_cooling():
 #PLOT COOLED LOG CORRELATION FUNCTIONS
 
 def log_correlation_functions_cooling():
-    x = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/der_log_x.txt")
-    x2 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/der_log_x2.txt")
-    x3 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/der_log_x3.txt")
-    x_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/der_log_x_err.txt")
-    x2_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/der_log_x2_err.txt")
-    x3_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/der_log_x3_err.txt")
-    X = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/log_x_cor.txt")
-    X2 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/log_x2_cor.txt")
-    X3 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/log_x3_cor.txt")
+    x1 = np.loadtxt("./instanton_project/cooling/der_log_x1.txt")
+    x2 = np.loadtxt("./instanton_project/cooling/der_log_x2.txt")
+    x3 = np.loadtxt("./instanton_project/cooling/der_log_x3.txt")
+    x1_err = np.loadtxt("./instanton_project/cooling/der_log_x1_err.txt")
+    x2_err = np.loadtxt("./instanton_project/cooling/der_log_x2_err.txt")
+    x3_err = np.loadtxt("./instanton_project/cooling/der_log_x3_err.txt")
+    X1 = np.loadtxt("./instanton projec/exact/log_x1_cor.txt")
+    X2 = np.loadtxt("./instanton projec/exact/log_x2_cor.txt")
+    X3 = np.loadtxt("./instanton projec/exact/log_x3_cor.txt")
     tau = np.linspace(0,1.5,29)
     Tau = np.linspace(0, 2.5, 100)
     
@@ -156,7 +156,7 @@ def log_correlation_functions_cooling():
     plt.plot(Tau,X, 'b')
     plt.plot(Tau,X2, 'r')
     plt.plot(Tau,X3, 'g')
-    plt.errorbar(tau,x,yerr=x_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
+    plt.errorbar(tau,x1,yerr=x1_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
     plt.errorbar(tau,x2,yerr=x2_err,fmt='o', color='red', markerfacecolor='none', label='n=2')
     plt.errorbar(tau,x3,yerr=x3_err,fmt='o', color='green', markerfacecolor='none', label='n=3')
     plt.legend()
@@ -165,8 +165,8 @@ def log_correlation_functions_cooling():
 #PLOT CONFIGURATIONS
 
 def euclidean_path():
-    x1 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/montecarlo.txt")
-    x2 = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/cooling/cooledmontecarlo.txt")
+    x1 = np.loadtxt("./instanton_project/cooling/montecarlo.txt")
+    x2 = np.loadtxt("./instanton_project/cooling/cooledmontecarlo.txt")
     tau = np.linspace(0, 40,800)
     
     plt.plot(tau, x1, color='black', linewidth=0.5, label='Monte Carlo')
@@ -183,11 +183,11 @@ def euclidean_path():
 #PLOT FREE ENERGY
 
 def free_energy():
-    temperature = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/adiabatic/temperature.txt")
+    temperature = np.loadtxt("./instanton_project/adiabatic/temperature.txt")
     Temperature = np.linspace(0.01,2,100)
-    Free_energy = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/exact/free_energy.txt")
-    free_energy = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/adiabatic/free_energy.txt")
-    free_energy_err = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/adiabatic/free_energy_err.txt")
+    Free_energy = np.loadtxt("./instanton projec/exact/free_energy.txt")
+    free_energy = np.loadtxt("./instanton_project/adiabatic/free_energy.txt")
+    free_energy_err = np.loadtxt("./instanton_project/adiabatic/free_energy_err.txt")
     
     plt.ylim(-2.5,-1.0)
     plt.xlim(0.02,2.5)
@@ -202,7 +202,7 @@ def free_energy():
 #INSTANTON DISTRIBUTION HISTOGRAM
 
 def instanton_distribution():
-    zcr = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/instantons/histogram.txt", float, delimiter = ' ')
+    zcr = np.loadtxt("./instanton_project/instantons/histogram.txt", float, delimiter = ' ')
     plt.hist(zcr,40,(0.0,4.0),histtype='step', color='black')
     plt.xlim(0,4)
     #plt.ylim(0,4000)
@@ -213,15 +213,15 @@ def instanton_distribution():
 #INSTANTON DENSITY
 
 def instanton_density():
-    n_cooling = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/instantons/n_cooling.txt")
+    n_cooling = np.loadtxt("./instanton_project/instantons/n_cooling.txt")
     
     colors = ['red', 'green', 'blue']
     i = 0
     
     for etha in range(14,17,1):
         etha = etha/10
-        n_tot = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/instantons/n_tot_av_{etha}.txt")
-        n_tot_err = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/instantons/n_tot_err_{etha}.txt")
+        n_tot = np.loadtxt(f"./instanton_project/instantons/n_tot_av_{etha}.txt")
+        n_tot_err = np.loadtxt(f"./instanton_project/instantons/n_tot_err_{etha}.txt")
         plt.errorbar(n_cooling,n_tot,n_tot_err,fmt='o', color=colors[i], markerfacecolor='none', label=f'$\eta = {etha}$')
         s0 = (4/3)*np.power(etha,3)
         loop_1 = 8*np.power(etha,5/2)*np.sqrt(2/np.pi)*np.exp(-s0)
@@ -242,15 +242,15 @@ def instanton_density():
 #INSTANTON ACTION DENSITY
 
 def instanton_action():
-    n_cooling = np.loadtxt("C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/instantons/n_cooling.txt")
+    n_cooling = np.loadtxt("./instanton_project/instantons/n_cooling.txt")
     
     colors = ['red', 'green', 'blue']
     i = 0
     
     for etha in range(14,17,1):
         etha = etha/10
-        action = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/instantons/action_av_{etha}.txt")
-        action_err = np.loadtxt(f"C:/Users/115271/Desktop/UniBO/Theoretical and Numerical Aspects of Nuclear Physics/esame/instantons/action_err_{etha}.txt")
+        action = np.loadtxt(f"./instanton_project/instantons/action_av_{etha}.txt")
+        action_err = np.loadtxt(f"./instanton_project/instantons/action_err_{etha}.txt")
         plt.errorbar(n_cooling,action,action_err,fmt='o', color=colors[i], markerfacecolor='none', label=f'$\eta = {etha}$')
         s0 = (4/3)*np.power(etha,3)
         plt.axhline(y=s0,color=colors[i])
