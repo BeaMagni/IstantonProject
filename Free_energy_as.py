@@ -1,7 +1,9 @@
 import numpy as np
 from numba import njit
-from scipy.integrate import simps
+from scipy.integrate import simps #we use this integration function since it gives better results than others
 import General_functions as fn
+
+#explicit computation of the free energy using tha adiabatic switching procedure. The parameters are left as an input from keyboard.
 
 def main():
     etha = float(input("Insert the value for etha, the shift of the potential: "))
@@ -18,6 +20,7 @@ def main():
     F = np.zeros(n_beta)
     F_err = np.zeros(n_beta)
     start = bool(input("Insert the desired start (0-cold, 1-hot): "))
+    
     output_path = './instanton_project/adiabatic'
     fn.path_creation(output_path)
 
@@ -25,7 +28,7 @@ def main():
         N = int(beta[b]/a)
         F[b], F_err[b] = fn.montecarlo_switching(N,n_equil,n_sweeps,n_switching,etha,start,a,delta_x)
         F[b] /= beta[b]
-        F[b] += fn.free_energy_zero(beta[b],w0)
+        F[b] += fn.free_energy_zero(beta[b],w0) #this is a constant term related to the choice of the harmonic oscillator as a basis
         F_err[b] /= beta[b]
 
     np.savetxt(output_path + '/temperature.txt',temperature)
