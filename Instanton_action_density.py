@@ -1,8 +1,6 @@
 import numpy as np
 import General_functions as fn
 
-#main 
-
 def main():
     N = int(input("Insert N, the dimension of the lattice: "))
     a = float(input("Insert the value for a, the lattice spacing: "))
