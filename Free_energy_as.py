@@ -1,5 +1,4 @@
 import numpy as np
-from numba import njit
 from scipy.integrate import simps #we use this integration function since it gives better results than others
 import General_functions as fn
 
