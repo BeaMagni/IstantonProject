@@ -1,6 +1,9 @@
 import numpy as np
 import General_functions as fn
 
+#computation of the instanton - anti-instanton separation, obtained measuring the zero crossing distance after some cooling sweeps
+#the parameters are left as an input from keyboard
+
 def main():
     N = int(input("Insert N, the dimension of the lattice: "))
     etha = float(input("Insert the value for etha, the shift of the potential: "))
