@@ -13,7 +13,7 @@ def main():
     n_equil = int(input("Insert the number of Monte Carlo equilibration sweeps: "))
     n_sweeps = int(input("Insert the number of Monte Carlo sweeps (must be bigger than the previous value): "))
     n_cooling_sweeps = int(input("Insert the number of cooling sweeps: "))
-    output _path = './instanton_project/instantons'
+    output_path = './instanton_project/instantons'
     fn.path_creation(output_path)
     start = bool(input("Insert the desired start (0-cold, 1-hot): "))
     
