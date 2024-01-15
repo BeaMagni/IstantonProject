@@ -1,8 +1,9 @@
 import numpy as np
-from numba import njit
 import General_functions as fn
 
-main():
+#main 
+
+def main():
     N = int(input("Insert N, the dimension of the lattice: "))
     a = float(input("Insert the value for a, the lattice spacing: "))
     delta_x = 0.5
@@ -13,34 +14,38 @@ main():
     output_path = './instanton_project/instantons'
     fn.path_creation(output_path)
     start = bool(input("Insert the desired start (0-cold, 1-hot): "))
+
+    #we consider three values of etha to evaluate the instanton action
     
     for etha in range(14,17,1):
-        etha = etha/10
+        etha = etha/10 
         x = fn.initialize_lattice(N,etha,start)
         n_tot_sum = np.zeros(n_cooling_sweeps)
         n2_tot_sum = np.zeros(n_cooling_sweeps)
         action_cooling = np.zeros(n_cooling_sweeps)
         action2_cooling = np.zeros(n_cooling_sweeps)
         n_cooling = 0
-        for _ in range(n_equil):
-            x = fn.metropolis(x,a,delta_x,etha)
+        
+        for _ in range(n_equil): #equilibration runs for the metropolis algorithm
+            x = fn.metropolis(x, a, delta_x, etha)
+        
         for j in range(n_sweeps-n_equil):
-            x = fn.metropolis(x,a,delta_x,etha)
-            if j%10 == 0:
+            x = fn.metropolis(x, a, delta_x, etha)
+            if j%10 == 0: #we don't do the cooling for all the metropolis sweeps
                 x_cool = np.copy(x)
                 n_cooling += 1
                 n_inst = n_anti_inst = 0
                 for u in range(n_cooling_sweeps):
-                    x_cool = fn.metropolis_cooling(x_cool,a,delta_x,etha)
-                    n_inst, n_anti_inst, _, _ = fn.find_instantons(x_cool,a)
+                    x_cool = fn.metropolis_cooling(x_cool, a, delta_x, etha)
+                    n_inst, n_anti_inst, _, _ = fn.find_instantons(x_cool, a) #we only consider the number of instantons and anti-instantons
                     n_tot = n_inst+n_anti_inst
                     n_tot_sum[u] += n_tot
                     n2_tot_sum[u] += np.power(n_tot,2)
-                    action = fn.calculate_action(x_cool,etha,a)
+                    action = fn.calculate_action(x_cool, etha, a)
                     action_cooling[u] += action
                     action2_cooling[u] += np.power(action,2)
-        action_av, action_err = fn.average_std(action_cooling, action2_cooling,n_cooling)
-        n_tot_av, n_tot_err = fn.average_std(n_tot_sum,n2_tot_sum,n_cooling)
+        action_av, action_err = fn.average_std(action_cooling, action2_cooling, n_cooling)
+        n_tot_av, n_tot_err = fn.average_std(n_tot_sum, n2_tot_sum, n_cooling)
         action_av = np.divide(action_av,n_tot_av)
         action_err = np.divide(action_err,n_tot_av)
         n_tot_av /= N*a
