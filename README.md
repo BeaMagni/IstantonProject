@@ -8,4 +8,5 @@ What you will find:
 - Plots.py: this file contains all the functions related to the plots;
 - lastly, there are all the other files called in the Main.py file, containing specific functions and/or the main part, giving the corresponding results.
 
-To run the codes, you simply need to download the files and use a Python compiler. It's important that all of the .py files are in the same folder on your computer.
+To run the codes, you simply need to download the files and use a Python compiler. 
+It's important that all of the .py files are in the same folder on your computer.
