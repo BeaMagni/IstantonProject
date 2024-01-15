@@ -2,6 +2,9 @@ import numpy as np
 from numba import njit
 import General_functions as fn
 
+#monte carlo simulation: computation of correlation functions and their logarithmic derivatives and the groundstate wavefunction
+#the parameters are left as an input from keyboard
+
 def main():
     N = int(input("Insert N, the dimension of the lattice: "))
     etha = float(input("Insert the value for etha, the shift of the potential: "))
@@ -37,17 +40,17 @@ def main():
     output_path = './instanton_project/monte_carlo'
     fn.path_creation(output_path)
     
-    x = fn.initialize_lattice(N,etha,start)
+    x = fn.initialize_lattice(N, etha, start)
     
-    for _ in range(n_equil):
+    for _ in range(n_equil): #equilibration runs for the metropolis algorithm
         x = fn.metropolis(x, a, delta_x, etha)
     for j in range(n_sweeps - n_equil):
       x = fn.metropolis(x, a, delta_x, etha)
-      if j%50 == 0:
+      if j%50 == 0: #we only save some of the configurations
         np.savetxt(output_path + "/montecarlo_hist.txt", x)
       for _ in range(5):
         count += 1
-        p0 = int((N-30)*random.uniform(0.0,1.0))
+        p0 = int((N-30)*random.uniform(0.0,1.0)) #we consider a rescaled (based on the total number of lattice points) random number
         for p in range(30):
           x_cor = x[p0]*x[p0+p]
           x_cor_sum[p] += x_cor
@@ -57,14 +60,14 @@ def main():
           x2_cor_sum2[p] += np.power(x_cor,4)
           x3_cor_sum2[p] += np.power(x_cor,6)
     
-    x_cor_av, x_cor_err = fn.average_std(x_cor_sum,x_cor_sum2,count)
-    x2_cor_av, x2_cor_err = fn.average_std(x2_cor_sum,x2_cor_sum2,count)
-    x3_cor_av, x3_cor_err = fn.average_std(x3_cor_sum,x3_cor_sum2,count)
-    der_log_x, der_log_x_err = fn.derivative_log(x_cor_av,x_cor_err,a)
+    x_cor_av, x_cor_err = fn.average_std(x_cor_sum, x_cor_sum2, count)
+    x2_cor_av, x2_cor_err = fn.average_std(x2_cor_sum, x2_cor_sum2, count)
+    x3_cor_av, x3_cor_err = fn.average_std(x3_cor_sum, x3_cor_sum2, count)
+    der_log_x, der_log_x_err = fn.derivative_log(x_cor_av, x_cor_err, a)
     x2_cor_av_sub = x2_cor_av-x2_cor_av[-1]
     x2_cor_err_sub = np.sqrt(np.power(x2_cor_err,2)+np.power(x2_cor_err[-1],2))
-    der_log_x2, der_log_x2_err = fn.derivative_log(x2_cor_av_sub,x2_cor_err,a)
-    der_log_x3, der_log_x3_err = fn.derivative_log(x3_cor_av,x3_cor_err,a)
+    der_log_x2, der_log_x2_err = fn.derivative_log(x2_cor_av_sub, x2_cor_err, a)
+    der_log_x3, der_log_x3_err = fn.derivative_log(x3_cor_av, x3_cor_err, a)
 
     np.savetxt(output_path + '/x1_cor_av.txt',x_cor_av)
     np.savetxt(output_path + '/x2_cor_av.txt',x2_cor_av)
