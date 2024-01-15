@@ -4,15 +4,15 @@ import Monte_Carlo
 import MC_cooling
 import Free_energy_as
 import Instanton_hist
-import Instanton_action
+import Instanton_action_density
 import Plots
 
 stop = False
-while stop == False:
+while stop == False: #the table reappears until the exit condition is chosen
     headers = ["NUMBER", "CODE"]
     rows = [[1, "Exact solution"], [2, "Monte Carlo solution"], [3, "Monte Carlo Cooling"], [4, "Free energy adiabatic switching"], [5, "Instantons histogram"], [6, "Instantons action"], [7, "Plots"], [8, "Stop running"]]
 
-    print(tabulate(rows, headers=headers))
+    print(tabulate(rows, headers=headers)) #creation of the table showing the possible programs one can run
 
     num = int(input('Select the code to run: '))
 
@@ -27,7 +27,7 @@ while stop == False:
     elif num == 5:
         Instanton_hist.main()
     elif num == 6:
-        Instanton_action.main()
+        Instanton_action_density.main()
     elif num == 7:
         stop_plot = False
         while stop_plot == False:
@@ -36,7 +36,8 @@ while stop == False:
                      [7, "Monte Carlo cooled correlators"], [8, "Monte Carlo cooled log correlators"], [9, "Free energy"], [10, "Instantons distribution"], [11, "Instantons density"], [12, "Instantons action"],
                      [13, "Stop running plots"]]
 
-            print(tabulate(lines, headers=head))
+            print(tabulate(lines, headers=head)) #creation of the table showing the possible plots one can obtain
+            
             plot = int(input('Select the plot to show: '))
             if plot == 1:
                 Plots.potential_eigenvalues()
