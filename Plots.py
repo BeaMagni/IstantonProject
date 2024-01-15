@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #PLOT POTENTIAL AND ENERGY LEVELS
+
 def potential_eigenvalues():
     etha = 1.4
     x = np.linspace(-2.5,2.5,1000)
@@ -16,6 +17,7 @@ def potential_eigenvalues():
     plt.show()
 
 #PLOT ENERGY EIGENVALUES VARIATION WITH RESPECT TO ETHA
+
 def energy_eigenvalues_variation():
     Etha = np.linspace(0.001,2,1000)
     E_1 = np.loadtxt("./instanton_project/exact/energy_1.txt")
@@ -40,16 +42,15 @@ def energy_eigenvalues_variation():
 #PLOT GROUND STATE WAVEFUNCTION HISTOGRAM
 def ground_state_hist():
     x = np.loadtxt("./instanton_project/monte_carlo/montecarlo_hist.txt")
-    y = np.linspace(-2.5,2.5,100)
+    X = np.linspace(-2.5,2.5,100)
     ground_state = np.loadtxt("./instanton_project/exact/ground_state.txt")
     
-    plt.plot(y, ground_state, color='lime', label='Exact')
-    plt.hist(x, bins=100, density=True, histtype='step',label='Monte Carlo')
+    plt.plot(X, ground_state, color='lime')
+    plt.hist(x, bins=100, density=True, histtype='step')
     plt.xlim(-2.1,2.1)
     plt.ylim(0,0.4)
     plt.xlabel('x')
     plt.ylabel(r'$|\Psi(x)|^2$')
-    plt.legend()
     plt.show()
 
 #PLOT CORRELATION FUNCTIONS
@@ -61,9 +62,9 @@ def correlation_functions():
     x1_err = np.loadtxt("./instanton_project/monte_carlo/x1_cor_err.txt")
     x2_err = np.loadtxt("./instanton_project/monte_carlo/x2_cor_err.txt")
     x3_err = np.loadtxt("./instanton_project/monte_carlo/x3_cor_err.txt")
-    X1 = np.loadtxt("./instanton projec/exact/x1_corr.txt")
-    X2 = np.loadtxt("./instanton projec/exact/x2_corr.txt")
-    X3 = np.loadtxt("./instanton projec/exact/x3_corr.txt")
+    X1 = np.loadtxt("./instanton_project/exact/x1_corr.txt")
+    X2 = np.loadtxt("./instanton_project/exact/x2_corr.txt")
+    X3 = np.loadtxt("./instanton_project/exact/x3_corr.txt")
     tau = np.linspace(0,1.5,30)
     Tau = np.linspace(0, 2.5, 100)
     
@@ -89,9 +90,9 @@ def log_correlation_functions():
     x1_err = np.loadtxt("./instanton_project/monte_carlo/der_log_x1_err.txt")
     x2_err = np.loadtxt("./instanton_project/monte_carlo/der_log_x2_err.txt")
     x3_err = np.loadtxt("./instanton_project/monte_carlo/der_log_x3_err.txt")
-    X1 = np.loadtxt("./instanton projec/exact/log_x1_corr.txt")
-    X2 = np.loadtxt("./instanton projec/exact/log_x2_corr.txt")
-    X3 = np.loadtxt("./instanton projec/exact/log_x3_corr.txt")
+    X1 = np.loadtxt("./instanton_project/exact/log_x1_corr.txt")
+    X2 = np.loadtxt("./instanton_project/exact/log_x2_corr.txt")
+    X3 = np.loadtxt("./instanton_project/exact/log_x3_corr.txt")
     tau = np.linspace(0,1.5,29)
     Tau = np.linspace(0, 2.5, 100)
     
@@ -117,9 +118,9 @@ def correlation_functions_cooling():
     x1_err = np.loadtxt("./instanton_project/cooling/x1_cor_err.txt")
     x2_err = np.loadtxt("./instanton_project/cooling/x2_cor_err.txt")
     x3_err = np.loadtxt("./instanton_project/cooling/x3_cor_err.txt")
-    X1 = np.loadtxt("./instanton projec/exact/x1_cor.txt")
-    X2 = np.loadtxt("./instanton projec/exact/x2_cor.txt")
-    X3 = np.loadtxt("./instanton projec/exact/x3_cor.txt")
+    X1 = np.loadtxt("./instanton_project/exact/x1_corr.txt")
+    X2 = np.loadtxt("./instanton_project/exact/x2_corr.txt")
+    X3 = np.loadtxt("./instanton_project/exact/x3_corr.txt")
     tau = np.linspace(0,1.5,30)
     Tau = np.linspace(0, 2.5, 100)
     
@@ -127,7 +128,7 @@ def correlation_functions_cooling():
     plt.ylim(0,8)
     plt.xlabel(r'$\tau$')
     plt.ylabel(r'$\langle x^n(0) x^n(\tau) \rangle$')
-    plt.plot(Tau, X, 'b')
+    plt.plot(Tau, X1, 'b')
     plt.plot(Tau, X2, 'r')
     plt.plot(Tau, X3, 'g')
     plt.errorbar(tau, x1, yerr=x1_err, fmt='o', color='blue', markerfacecolor='none', label='n=1')
@@ -145,9 +146,9 @@ def log_correlation_functions_cooling():
     x1_err = np.loadtxt("./instanton_project/cooling/der_log_x1_err.txt")
     x2_err = np.loadtxt("./instanton_project/cooling/der_log_x2_err.txt")
     x3_err = np.loadtxt("./instanton_project/cooling/der_log_x3_err.txt")
-    X1 = np.loadtxt("./instanton projec/exact/log_x1_cor.txt")
-    X2 = np.loadtxt("./instanton projec/exact/log_x2_cor.txt")
-    X3 = np.loadtxt("./instanton projec/exact/log_x3_cor.txt")
+    X1 = np.loadtxt("./instanton_project/exact/log_x1_corr.txt")
+    X2 = np.loadtxt("./instanton_project/exact/log_x2_corr.txt")
+    X3 = np.loadtxt("./instanton_project/exact/log_x3_corr.txt")
     tau = np.linspace(0,1.5,29)
     Tau = np.linspace(0, 2.5, 100)
     
@@ -155,7 +156,7 @@ def log_correlation_functions_cooling():
     plt.ylim(0,5)
     plt.xlabel(r'$\tau$')
     plt.ylabel(r'$\frac{d}{d\tau} \log\left\langle x^n(0) x^n(\tau) \right\rangle$')
-    plt.plot(Tau, X, 'b')
+    plt.plot(Tau, X1, 'b')
     plt.plot(Tau, X2, 'r')
     plt.plot(Tau, X3, 'g')
     plt.errorbar(tau, x1, yerr=x1_err, fmt='o', color='blue', markerfacecolor='none', label='n=1')
@@ -169,7 +170,7 @@ def log_correlation_functions_cooling():
 def euclidean_path():
     x1 = np.loadtxt("./instanton_project/cooling/montecarlo.txt")
     x2 = np.loadtxt("./instanton_project/cooling/cooledmontecarlo.txt")
-    tau = np.linspace(0, 40,800)
+    tau = np.linspace(0, 40, 800)
     
     plt.plot(tau, x1, color='black', linewidth=0.5, label='Monte Carlo')
     plt.plot(tau, x2, color='lime', linewidth=2, label='Cooled Monte Carlo')
@@ -187,7 +188,7 @@ def euclidean_path():
 def free_energy():
     temperature = np.loadtxt("./instanton_project/adiabatic/temperature.txt")
     Temperature = np.linspace(0.01,2,100)
-    Free_energy = np.loadtxt("./instanton projec/exact/free_energy.txt")
+    Free_energy = np.loadtxt("./instanton_project/exact/free_energy.txt")
     free_energy = np.loadtxt("./instanton_project/adiabatic/free_energy.txt")
     free_energy_err = np.loadtxt("./instanton_project/adiabatic/free_energy_err.txt")
     
