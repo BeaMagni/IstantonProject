@@ -10,7 +10,7 @@ def montecarlo_switching(n, n_equil, n_sweeps, n_switching, etha, start, a, delt
     d_alpha = 1.0/n_switching
     delta_s_alpha = np.zeros(2*n_switching+1)
     delta_s_alpha2 = np.zeros(2*n_switching+1)
-    x = initialize_lattice(n,etha,start)
+    x = fn.initialize_lattice(n,etha,start)
     
     for i_switching in range(2*n_switching+1):
         if i_switching <= n_switching:
@@ -19,18 +19,18 @@ def montecarlo_switching(n, n_equil, n_sweeps, n_switching, etha, start, a, delt
             alpha = 2.0 - i_switching*d_alpha
         
         for _ in range(n_equil): #equilibration runs for the metropolis algorithm
-            metropolis_switching(x,etha,a,delta_x,alpha)
+            fn.metropolis_switching(x,etha,a,delta_x,alpha)
         
         for _ in range(n_sweeps-n_equil):
             delta_s_alpha_temp = 0.0
-            metropolis_switching(x,etha,a,delta_x,alpha)
-            potential_diff = potential_anharmonic(x,etha)
-            potential_diff -= potential_harmonic(x,w0)
+            fn.metropolis_switching(x,etha,a,delta_x,alpha)
+            potential_diff = fn.potential_anharmonic(x,etha)
+            potential_diff -= fn.potential_harmonic(x,w0)
             delta_s_alpha_temp = np.sum(potential_diff)*a
             delta_s_alpha[i_switching] += delta_s_alpha_temp
             delta_s_alpha2[i_switching] += np.power(delta_s_alpha_temp,2)
     
-    delta_s_alpha_av, delta_s_alpha_err = stat_av_var(delta_s_alpha,delta_s_alpha2,n_sweeps-n_equil)
+    delta_s_alpha_av, delta_s_alpha_err = fn.average_std(delta_s_alpha,delta_s_alpha2,n_sweeps-n_equil)
     integral = simps(delta_s_alpha_av[0:n_switching+1],dx=d_alpha)
     integral_inv = simps(delta_s_alpha_av[n_switching:2*n_switching+1],dx=d_alpha) #we take into account the hyseresis effects to reduce the presence of systematics errors
     integral_err = simps(delta_s_alpha_err[0:n_switching+1],dx=d_alpha)
