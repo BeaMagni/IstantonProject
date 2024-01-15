@@ -206,7 +206,7 @@ def hermite_coefficients(position, norm, ndim):
 def psi_ground_state(position, norm, ndim, v):
     ground_state = np.zeros(position.size)
     for x in range(position.size):
-        projections = np.multiply(v[:,0],hermite_coefficients(X[x],norm,ndim))
+        projections = np.multiply(v[:,0],hermite_coefficients(position[x],norm,ndim))
         ground_state[x] = pow(hermite.hermval(position[x]/norm,projections),2)
     np.savetxt(output_path + '/ground_state.txt', ground_state)
 
