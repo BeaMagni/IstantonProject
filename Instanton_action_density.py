@@ -1,6 +1,9 @@
 import numpy as np
 import General_functions as fn
 
+#computation of the instanton density and instanton action as functions of the number of cooling sweeps. 
+#the parameters are left as an input from keyboard
+
 def main():
     N = int(input("Insert N, the dimension of the lattice: "))
     a = float(input("Insert the value for a, the lattice spacing: "))
@@ -13,7 +16,7 @@ def main():
     fn.path_creation(output_path)
     start = bool(input("Insert the desired start (0-cold, 1-hot): "))
 
-    #we consider three values of etha to evaluate the instanton action
+    #we consider three values of etha to evaluate the instanton desnity and action
     
     for etha in range(14,17,1):
         etha = etha/10 
