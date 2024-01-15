@@ -48,10 +48,12 @@ def main():
             np.savetxt(output_path + "/montecarlo.txt", x)
         if j%10 == 0: #we don't do the cooling for all the metropolis sweeps
             x_cool = np.copy(x)
-            for _ in range(n_cooling_sweeps):
+            for _ in range(int(n_cooling_sweeps/2)): #we save the configurations only considering 100 cooling sweeps
                 x_cool = fn.metropolis_cooling(x_cool, a, delta_x, etha)
             if j%int((n_sweeps-n_equil)/2) == 0: #we only save some of the configurations
                 np.savetxt(output_path + "/cooledmontecarlo.txt",x_cool)
+            for _ in range(int(n_cooling_sweeps/2),n_cooling_sweeps): #for the correlators we consider 200 cooling sweeps so we continue the cycle
+                x_cool = fn.metropolis_cooling(x_cool, a, delta_x, etha)
             for _ in range(5):
                 count += 1
                 p0 = int((N-30)*np.random.uniform(0.0,1.0)) #we consider a rescaled (based on the total number of lattice points) random number
