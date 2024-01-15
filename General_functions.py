@@ -91,7 +91,7 @@ def derivative_log(x, x_err, a):
 
     for t in range(29):
         derivative_log[t] = -(x[t+1]-x[t])/(x[t]*a)
-        derivative_log_err[t] = np.sqrt((np.power(x_err[t+1]/x[t],2)+np.power(x_err[t]*x[t+1]/np.power(x[t],2),2))/a)
+        derivative_log_err[t] = np.sqrt(np.power(x_err[t+1]/x[t],2)+np.power(x_err[t]*x[t+1]/np.power(x[t],2),2))/a
 
     return derivative_log, derivative_log_err
 
