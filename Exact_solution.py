@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from numpy import linalg as la
+from numpy import linalg as la 
 from scipy.special import factorial
 from numpy.polynomial import hermite  #this library is needed to compute the eigenfunction for the ground state
 import General_functions as fn
@@ -25,7 +25,7 @@ def diag(ndim, etha, A, B, C, c):
           x_4 = c**4*np.sqrt((n+1)*(n+2)*(n+3)*(n+4))
           H[n][n+4] = H[n+4][n] = x_4
 
-    E, v = la.eigh(H)
+    E, v = la.eigh(H) #this function diagonalizes the matrix given as an input and returns both eigenvalues (E) and eigenvectors (v)
     for i in range(4):
         f.append(E[i])
     np.savetxt(output_path + '/eigenvalues.txt', f)
