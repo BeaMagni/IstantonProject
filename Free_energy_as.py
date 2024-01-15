@@ -70,4 +70,4 @@ def main():
 
     np.savetxt(output_path + '/temperature.txt',temperature)
     np.savetxt(output_path + '/free_energy.txt',F)
-    np.savetxt(output_pat + '/free_energy_err.txt',F_err)
+    np.savetxt(output_path + '/free_energy_err.txt',F_err)
