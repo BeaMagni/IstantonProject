@@ -181,7 +181,7 @@ def log_correlation(ndim, etha, tau, ntau, tau_array, dtau, E, v):
 #evaluation of the free energy of the system 
 
 def free_energy(E):
-    temperature = np.linspace(0.01, 2.0, 999)
+    temperature = np.linspace(0.01, 2.0, 100)
     free_energy = []
     Z= 0.0
     i_f_energy = 0
