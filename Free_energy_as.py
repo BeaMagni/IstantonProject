@@ -25,7 +25,7 @@ def main():
     fn.path_creation(output_path)
 
     for b in range(n_beta):
-        N = int(beta[b]/a)
+        N = int(beta[b]/a) #we vary the dimension of the lattice by considering variation in the temnperature, so in beta, since a is fixed
         F[b], F_err[b] = fn.montecarlo_switching(N,n_equil,n_sweeps,n_switching,etha,start,a,delta_x)
         F[b] /= beta[b]
         F[b] += fn.free_energy_zero(beta[b],w0) #this is a constant term related to the choice of the harmonic oscillator as a basis
