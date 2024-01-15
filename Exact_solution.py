@@ -210,7 +210,7 @@ def psi_ground_state(position, norm, ndim, v):
         ground_state[x] = pow(hermite.hermval(position[x]/norm,projections),2)
     np.savetxt(output_path + '/ground_state.txt', ground_state)
 
-#main: all the inputs are left as an input from keyboard
+#main: the parameters are left as an input from keyboard
 
 def main():
     ndim = int(input("Insert the dimention of the matrix: "))
