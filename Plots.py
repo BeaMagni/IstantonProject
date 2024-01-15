@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-#PLOT POTENSTIAL AND ENERGY LEVELS
+#PLOT POTENTIAL AND ENERGY LEVELS
 def potential_eigenvalues():
+    etha = 1.4
     x = np.linspace(-2.5,2.5,1000)
-    V=(x**2-etha**2)**2
+    V = (x**2-etha**2)**2
     plt.ylim(0,10)
     plt.xlabel("x")
     plt.ylabel("V(x)")
@@ -14,7 +15,7 @@ def potential_eigenvalues():
         plt.axhline(y=energy_eigenvalues[n], color='red', linestyle='--')
     plt.show()
 
-#PLOT ENERGY VARIATION
+#PLOT ENERGY EIGENVALUES VARIATION WITH RESPECT TO ETHA
 def energy_eigenvalues_variation():
     Etha = np.linspace(0.001,2,1000)
     E_1 = np.loadtxt("./instanton_project/exact/energy_1.txt")
@@ -36,18 +37,19 @@ def energy_eigenvalues_variation():
     plt.plot(Etha, E_6, 'b-')
     plt.show()
     
-#PLOT GROUND STATE HISTOGRAM
+#PLOT GROUND STATE WAVEFUNCTION HISTOGRAM
 def ground_state_hist():
     x = np.loadtxt("./instanton_project/monte_carlo/montecarlo_hist.txt")
     y = np.linspace(-2.5,2.5,100)
     ground_state = np.loadtxt("./instanton_project/exact/ground_state.txt")
     
-    plt.plot(y,ground_state,color='lime',label='Exact')
+    plt.plot(y, ground_state, color='lime', label='Exact')
     plt.hist(x, bins=100, density=True, histtype='step',label='Monte Carlo')
     plt.xlim(-2.1,2.1)
     plt.ylim(0,0.4)
     plt.xlabel('x')
     plt.ylabel(r'$|\Psi(x)|^2$')
+    plt.legend()
     plt.show()
 
 #PLOT CORRELATION FUNCTIONS
@@ -69,12 +71,12 @@ def correlation_functions():
     plt.ylim(0,8)
     plt.xlabel(r'$\tau$')
     plt.ylabel(r'$\langle x^n(0) x^n(\tau) \rangle$')
-    plt.plot(Tau,X1, 'b')
-    plt.plot(Tau,X2, 'r')
-    plt.plot(Tau,X3, 'g')
-    plt.errorbar(tau,x1,yerr=x1_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
-    plt.errorbar(tau,x2,yerr=x2_err,fmt='o', color='red', markerfacecolor='none', label='n=2')
-    plt.errorbar(tau,x3,yerr=x3_err,fmt='o', color='green', markerfacecolor='none', label='n=3')
+    plt.plot(Tau, X1, 'b')
+    plt.plot(Tau, X2, 'r')
+    plt.plot(Tau, X3, 'g')
+    plt.errorbar(tau, x1, yerr=x1_err, fmt='o', color='blue', markerfacecolor='none', label='n=1')
+    plt.errorbar(tau, x2, yerr=x2_err, fmt='o', color='red', markerfacecolor='none', label='n=2')
+    plt.errorbar(tau, x3, yerr=x3_err, fmt='o', color='green', markerfacecolor='none', label='n=3')
     plt.legend()
     plt.show()
 
@@ -97,12 +99,12 @@ def log_correlation_functions():
     plt.ylim(0,5)
     plt.xlabel(r'$\tau$')
     plt.ylabel(r'$\frac{d}{d\tau} \log\left\langle x^n(0) x^n(\tau) \right\rangle$')
-    plt.plot(Tau,X1, 'b')
-    plt.plot(Tau,X2, 'r')
-    plt.plot(Tau,X3, 'g')
-    plt.errorbar(tau,x1,yerr=x1_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
-    plt.errorbar(tau,x2,yerr=x2_err,fmt='o', color='red', markerfacecolor='none', label='n=2')
-    plt.errorbar(tau,x3,yerr=x3_err,fmt='o', color='green', markerfacecolor='none', label='n=3')
+    plt.plot(Tau, X1, 'b')
+    plt.plot(Tau, X2, 'r')
+    plt.plot(Tau, X3, 'g')
+    plt.errorbar(tau, x1, yerr=x1_err, fmt='o', color='blue', markerfacecolor='none', label='n=1')
+    plt.errorbar(tau, x2, yerr=x2_err, fmt='o', color='red', markerfacecolor='none', label='n=2')
+    plt.errorbar(tau, x3, yerr=x3_err, fmt='o', color='green', markerfacecolor='none', label='n=3')
     plt.legend()
     plt.show()
 
@@ -125,12 +127,12 @@ def correlation_functions_cooling():
     plt.ylim(0,8)
     plt.xlabel(r'$\tau$')
     plt.ylabel(r'$\langle x^n(0) x^n(\tau) \rangle$')
-    plt.plot(Tau,X, 'b')
-    plt.plot(Tau,X2, 'r')
-    plt.plot(Tau,X3, 'g')
-    plt.errorbar(tau,x1,yerr=x1_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
-    plt.errorbar(tau,x2,yerr=x2_err,fmt='o', color='red', markerfacecolor='none', label='n=2')
-    plt.errorbar(tau,x3,yerr=x3_err,fmt='o', color='green', markerfacecolor='none', label='n=3')
+    plt.plot(Tau, X, 'b')
+    plt.plot(Tau, X2, 'r')
+    plt.plot(Tau, X3, 'g')
+    plt.errorbar(tau, x1, yerr=x1_err, fmt='o', color='blue', markerfacecolor='none', label='n=1')
+    plt.errorbar(tau, x2, yerr=x2_err, fmt='o', color='red', markerfacecolor='none', label='n=2')
+    plt.errorbar(tau, x3, yerr=x3_err, fmt='o', color='green', markerfacecolor='none', label='n=3')
     plt.legend()
     plt.show()
 
@@ -153,16 +155,16 @@ def log_correlation_functions_cooling():
     plt.ylim(0,5)
     plt.xlabel(r'$\tau$')
     plt.ylabel(r'$\frac{d}{d\tau} \log\left\langle x^n(0) x^n(\tau) \right\rangle$')
-    plt.plot(Tau,X, 'b')
-    plt.plot(Tau,X2, 'r')
-    plt.plot(Tau,X3, 'g')
-    plt.errorbar(tau,x1,yerr=x1_err,fmt='o', color='blue', markerfacecolor='none', label='n=1')
-    plt.errorbar(tau,x2,yerr=x2_err,fmt='o', color='red', markerfacecolor='none', label='n=2')
-    plt.errorbar(tau,x3,yerr=x3_err,fmt='o', color='green', markerfacecolor='none', label='n=3')
+    plt.plot(Tau, X, 'b')
+    plt.plot(Tau, X2, 'r')
+    plt.plot(Tau, X3, 'g')
+    plt.errorbar(tau, x1, yerr=x1_err, fmt='o', color='blue', markerfacecolor='none', label='n=1')
+    plt.errorbar(tau, x2, yerr=x2_err, fmt='o', color='red', markerfacecolor='none', label='n=2')
+    plt.errorbar(tau, x3, yerr=x3_err, fmt='o', color='green', markerfacecolor='none', label='n=3')
     plt.legend()
     plt.show()
 
-#PLOT CONFIGURATIONS
+#PLOT TYPICAL EUCLIDEAN PATH
 
 def euclidean_path():
     x1 = np.loadtxt("./instanton_project/cooling/montecarlo.txt")
@@ -193,24 +195,24 @@ def free_energy():
     plt.xlim(0.02,2.5)
     plt.ylabel('F')
     plt.xlabel('T')
-    plt.plot(Temperature,Free_energy, color='black', label='Exact')
-    plt.errorbar(temperature,free_energy,yerr=free_energy_err,fmt='o', color='blue', markerfacecolor='none', label='Adiabatic switching')
+    plt.plot(Temperature, Free_energy, color='black', label='Exact')
+    plt.errorbar(temperature, free_energy, yerr=free_energy_err, fmt='o', color='blue', markerfacecolor='none', label='Adiabatic switching')
     plt.xscale('log')
     plt.legend()
     plt.show()
 
-#INSTANTON DISTRIBUTION HISTOGRAM
+#PLOT INSTANTON - ANTI-INSTANTON DISTRIBUTION HISTOGRAM
 
 def instanton_distribution():
     zcr = np.loadtxt("./instanton_project/instantons/histogram.txt", float, delimiter = ' ')
-    plt.hist(zcr,40,(0.0,4.0),histtype='step', color='black')
+    plt.hist(zcr, 40, (0.0,4.0), histtype='step', color='black')
     plt.xlim(0,4)
-    #plt.ylim(0,4000)
+    plt.ylim(0,4000)
     plt.xlabel(r'$\tau_z$')
     plt.ylabel(r'$n_{IA}(\tau_z)$')
     plt.show()
 
-#INSTANTON DENSITY
+#PLOT INSTANTON DENSITY vs NUMBER OF COOLING SWEEPS
 
 def instanton_density():
     n_cooling = np.loadtxt("./instanton_project/instantons/n_cooling.txt")
@@ -222,13 +224,13 @@ def instanton_density():
         etha = etha/10
         n_tot = np.loadtxt(f"./instanton_project/instantons/n_tot_av_{etha}.txt")
         n_tot_err = np.loadtxt(f"./instanton_project/instantons/n_tot_err_{etha}.txt")
-        plt.errorbar(n_cooling,n_tot,n_tot_err,fmt='o', color=colors[i], markerfacecolor='none', label=f'$\eta = {etha}$')
+        plt.errorbar(n_cooling, n_tot, yerr=n_tot_err, fmt='o', color=colors[i], markerfacecolor='none', label=f'$\eta = {etha}$')
         s0 = (4/3)*np.power(etha,3)
         loop_1 = 8*np.power(etha,5/2)*np.sqrt(2/np.pi)*np.exp(-s0)
         loop_2 = 8*np.power(etha,5/2)*np.sqrt(2/np.pi)*np.exp(-s0-71/(72*s0))
-        plt.axhline(y=loop_1,color=colors[i])
-        plt.axhline(y=loop_2,color=colors[i],linestyle='--')
-        i +=1
+        plt.axhline(y=loop_1, color=colors[i])
+        plt.axhline(y=loop_2, color=colors[i], linestyle='--')
+        i += 1
     
     plt.xlabel(r'$n_{cool}$')
     plt.ylabel(r'$N_{inst}/\beta$')
@@ -239,7 +241,7 @@ def instanton_density():
     plt.legend()
     plt.show()
 
-#INSTANTON ACTION DENSITY
+#PLOT INSTANTON ACTION DENSITY vs NUMBER OF COOLING SWEEPS
 
 def instanton_action():
     n_cooling = np.loadtxt("./instanton_project/instantons/n_cooling.txt")
@@ -251,10 +253,10 @@ def instanton_action():
         etha = etha/10
         action = np.loadtxt(f"./instanton_project/instantons/action_av_{etha}.txt")
         action_err = np.loadtxt(f"./instanton_project/instantons/action_err_{etha}.txt")
-        plt.errorbar(n_cooling,action,action_err,fmt='o', color=colors[i], markerfacecolor='none', label=f'$\eta = {etha}$')
+        plt.errorbar(n_cooling, action, yerr=action_err, fmt='o', color=colors[i], markerfacecolor='none', label=f'$\eta = {etha}$')
         s0 = (4/3)*np.power(etha,3)
-        plt.axhline(y=s0,color=colors[i])
-        i +=1
+        plt.axhline(y=s0, color=colors[i])
+        i += 1
     
     plt.xlabel(r'$n_{cool}$')
     plt.ylabel(r'$S/N_{inst}$')
