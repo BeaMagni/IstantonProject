@@ -1,5 +1,5 @@
 import numpy as np
-from numba import njit
+from numba import njit #we import this function to speed up the executions of the functions defined in this file
 from pathlib import Path
 
 #this function creates the lattice, depending on the choice of hot or cold start
