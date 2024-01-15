@@ -50,7 +50,7 @@ def main():
         np.savetxt(output_path + "/montecarlo_hist.txt", x)
       for _ in range(5):
         count += 1
-        p0 = int((N-30)*random.uniform(0.0,1.0)) #we consider a rescaled (based on the total number of lattice points) random number
+        p0 = int((N-30)*np.random.uniform(0.0,1.0)) #we consider a rescaled (based on the total number of lattice points) random number
         for p in range(30):
           x_cor = x[p0]*x[p0+p]
           x_cor_sum[p] += x_cor
