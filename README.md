@@ -1,6 +1,6 @@
-#Instantons and Monte Carlo Methods in Quantum Mechanics
+# Instantons and Monte Carlo Methods in Quantum Mechanics
 
-In this repository, one will find the Python codes to recreate some of the results presented in the "Instantons and Monte Carlo Methods in Quantum Mechanics" paper by T. Schäfer (https://arxiv.org/abs/hep-lat/0411010).
+In this repository, you will find the Python codes to recreate some of the results presented in the "Instantons and Monte Carlo Methods in Quantum Mechanics" paper by T. Schäfer (https://arxiv.org/abs/hep-lat/0411010).
 
 What you will find:
 - Main.py: this is the main program, you should run this one to obtain all the possible results, following the instructions;
