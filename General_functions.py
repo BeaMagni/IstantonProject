@@ -46,7 +46,7 @@ def potential_anharmonic(x, etha):
 def potential_alpha(x, w0, etha, alpha):
     harmonic = potential_harmonic(x, w0)
     anharmonic = potential_anharmonic(x, etha)
-    potential = harmonic + alpha * (anharmonic - harmonic)
+    potential = harmonic+alpha*(anharmonic-harmonic)
     return potential
 
 #definition of the metropolis algorithm for the adiabatic switching method
@@ -56,7 +56,7 @@ def metropolis_switching(x, etha, a, delta_x, alpha):
     w0 = 4*etha
     for i in range(1,x.size):
         old_action = (1/(4*a))*(np.power((x[i]-x[i-1]),2)+np.power((x[i+1]-x[i]),2))+a*potential_alpha(x[i],w0,etha,alpha)
-        new_x = x[i]+delta_x*(2*np.random.uniform(0.0,1.0)-1.0)
+        new_x = x[i]+delta_x*(2*np.random.uniform(0.0,1.0)-1.0) #generation of an update for the coordinates, based on a random value
         new_action = (1/(4*a))*(np.power((new_x-x[i-1]),2)+np.power((x[i+1]-new_x),2))+a*potential_alpha(new_x,w0,etha,alpha)
         delta_action_exp = np.exp(old_action-new_action)
         if delta_action_exp > np.random.uniform(0.0,1.0): #acceptance condition
@@ -101,7 +101,7 @@ def derivative_log(x, x_err, a):
 def metropolis(x, a, delta_x, etha):
     for i in range(1,x.size-1):
         S = (1/(4*a))*(np.power((x[i]-x[i-1]),2)+np.power((x[i+1]-x[i]),2)) + a*np.power((np.power(x[i],2) - np.power(etha,2)),2)
-        new_x = x[i] + delta_x*(2.0*np.random.uniform(0.0,1.0)-1.0)
+        new_x = x[i] + delta_x*(2.0*np.random.uniform(0.0,1.0)-1.0) #generation of an update for the coordinates, based on a random value
         new_S = (1/(4*a))*(np.power((new_x-x[i-1]),2)+np.power((x[i+1]-new_x),2)) + a*np.power((np.power(new_x,2) - np.power(etha,2)),2)
         delta_S = np.exp(S-new_S)
         if(delta_S > np.random.uniform(0.0,1.0)): #acceptance condition
@@ -117,7 +117,7 @@ def metropolis_cooling(x_cool, a, delta_x, etha):
     for i in range(1,x_cool.size-1):
         S = (1/(4*a))*(np.power((x_cool[i]-x_cool[i-1]),2)+np.power((x_cool[i+1]-x_cool[i]),2)) + a*np.power((np.power(x_cool[i],2) - np.power(etha,2)),2)
         for _ in range(10):
-            new_x_cool = x_cool[i] + delta_x*0.1*(2.0*np.random.uniform(0.0,1.0)-1.0)
+            new_x_cool = x_cool[i] + delta_x*0.1*(2.0*np.random.uniform(0.0,1.0)-1.0) #generation of an update for the coordinates, based on a random value
             new_S = (1/(4*a))*(np.power((new_x_cool-x_cool[i-1]),2)+np.power((x_cool[i+1]-new_x_cool),2)) + a*np.power((np.power(new_x_cool,2) - np.power(etha,2)),2)
             if(new_S < S): #acceptance condition: we accept ony value that decrease the action
                 x_cool[i] = new_x_cool
@@ -129,9 +129,10 @@ def metropolis_cooling(x_cool, a, delta_x, etha):
 
 @njit
 def find_instantons(x, a):
-    n_i = n_ai = x_i = x_ai = 0
-    pos_i = []
-    pos_ai = []
+    n_i = n_ai = 0 #instanton and anti-instanton number
+    x_i = x_ai = 0
+    pos_i = [] #instanton position
+    pos_ai = [] #anti-instanton position
     x0 = x[0]
     for h in range(1,x.size-1):
         if np.abs(x[h])<1e-9: #we verify if the value is close to zero
