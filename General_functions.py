@@ -44,6 +44,7 @@ def potential_anharmonic(x, etha):
 
 @njit
 def potential_alpha(x, w0, etha, alpha):
+    #alpha is the coupling constant that define the adiabatic switching action
     harmonic = potential_harmonic(x, w0)
     anharmonic = potential_anharmonic(x, etha)
     potential = harmonic+alpha*(anharmonic-harmonic)
@@ -53,6 +54,7 @@ def potential_alpha(x, w0, etha, alpha):
 
 @njit
 def metropolis_switching(x, etha, a, delta_x, alpha):
+    #alpha is the coupling constant that define the adiabatic switching action
     w0 = 4*etha
     for i in range(1,x.size):
         old_action = (1/(4*a))*(np.power((x[i]-x[i-1]),2)+np.power((x[i+1]-x[i]),2))+a*potential_alpha(x[i],w0,etha,alpha)
@@ -95,10 +97,11 @@ def derivative_log(x, x_err, a):
 
     return derivative_log, derivative_log_err
 
-##definition of the metropolis algorithm
+#definition of the metropolis algorithm
 
 @njit
 def metropolis(x, a, delta_x, etha):
+    # delta_x allows us to regulate the acceptance rate
     for i in range(1,x.size-1):
         S = (1/(4*a))*(np.power((x[i]-x[i-1]),2)+np.power((x[i+1]-x[i]),2)) + a*np.power((np.power(x[i],2) - np.power(etha,2)),2)
         new_x = x[i] + delta_x*(2.0*np.random.uniform(0.0,1.0)-1.0) #generation of an update for the coordinates, based on a random value
@@ -119,7 +122,7 @@ def metropolis_cooling(x_cool, a, delta_x, etha):
         for _ in range(10):
             new_x_cool = x_cool[i] + delta_x*0.1*(2.0*np.random.uniform(0.0,1.0)-1.0) #generation of an update for the coordinates, based on a random value
             new_S = (1/(4*a))*(np.power((new_x_cool-x_cool[i-1]),2)+np.power((x_cool[i+1]-new_x_cool),2)) + a*np.power((np.power(new_x_cool,2) - np.power(etha,2)),2)
-            if(new_S < S): #acceptance condition: we accept ony value that decrease the action
+            if(new_S < S): #acceptance condition: we accept only value that decrease the action
                 x_cool[i] = new_x_cool
     x_cool[0] = x_cool[-2]
     x_cool[-1] = x_cool[1]
