@@ -40,6 +40,7 @@ def energy_eigenvalues_variation():
     plt.show()
     
 #PLOT GROUND STATE WAVEFUNCTION HISTOGRAM
+
 def ground_state_hist():
     x = np.loadtxt("./instanton_project/monte_carlo/montecarlo_hist.txt")
     X = np.linspace(-2.5,2.5,100)
