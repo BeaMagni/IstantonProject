@@ -217,12 +217,14 @@ def main():
     etha = float(input("Insert the value for the shift of the potential: "))
     euclidian_time = float(input("Insert the maximum value for the euclidean time: "))
     step = int(input("Insert the value for the time step: "))
+    #set of variables needed to compute the hamiltonian elements  
     w0 = c = C = B = 0
     A = 1
     w0 = 4*etha
     B = -2*etha**2-w0**2/4
     C = etha**4
     c = 1/np.sqrt(w0)
+    
     t_array, dt = np.linspace(0, euclidian_time, step, retstep=True)
     X = np.linspace(-2.5,2.5,100)
     norm = c*np.sqrt(2)
