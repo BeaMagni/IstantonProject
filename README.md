@@ -10,3 +10,4 @@ What you will find:
 
 To run the codes, you simply need to download the files and use a Python compiler. 
 It's important that all of the .py files are in the same folder on your computer.
+Running the various parts there will be generated a folder, called instanton_project, in the same directory, which will contain other foldes, divided by category with the .txt files of the data obtained. 
