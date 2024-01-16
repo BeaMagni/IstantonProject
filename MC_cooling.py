@@ -37,7 +37,7 @@ def main():
     output_path = './instanton_project/cooling'
     fn.path_creation(output_path)
     
-    x = fn.initialize_lattice(N, etha, start)
+    x = fn.lattice_initialization(N, etha, start)
     
     for _ in range(n_equil): #equilibration runs for the metropolis algorithm
         x = fn.metropolis(x, a, delta_x, etha)
