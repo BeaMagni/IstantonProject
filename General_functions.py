@@ -5,7 +5,7 @@ from pathlib import Path
 #this function creates the lattice, depending on the choice of hot or cold start
 
 @njit
-def initialize_lattice(n, etha, start):
+def lattice_inizialization(n, etha, start):
     if start is True:
         x = np.zeros(n)
         for k in range(n):
@@ -131,7 +131,7 @@ def metropolis_cooling(x_cool, a, delta_x, etha):
 #this functions is used to obtain the instanton - anti-instanton content of the system
 
 @njit
-def find_instantons(x, a):
+def instantons_content(x, a):
     n_i = n_ai = 0 #instanton and anti-instanton number
     x_i = x_ai = 0
     pos_i = [] #instanton position
