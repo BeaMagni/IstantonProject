@@ -9,7 +9,7 @@ def montecarlo_switching(n, n_equil, n_sweeps, n_switching, etha, start, a, delt
     d_alpha = 1.0/n_switching
     delta_s_alpha = np.zeros(2*n_switching+1)
     delta_s_alpha2 = np.zeros(2*n_switching+1)
-    x = fn.initialize_lattice(n,etha,start)
+    x = fn.lattice_inizialization(n,etha,start)
     
     for i_switching in range(2*n_switching+1):
         if i_switching <= n_switching:
