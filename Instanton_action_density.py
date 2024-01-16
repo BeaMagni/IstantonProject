@@ -20,7 +20,7 @@ def main():
     
     for etha in range(14,17,1):
         etha = etha/10 
-        x = fn.initialize_lattice(N,etha,start)
+        x = fn.lattice_inizialization(N,etha,start)
         n_tot_sum = np.zeros(n_cooling_sweeps)
         n2_tot_sum = np.zeros(n_cooling_sweeps)
         action_cooling = np.zeros(n_cooling_sweeps)
@@ -38,7 +38,7 @@ def main():
                 n_inst = n_anti_inst = 0
                 for u in range(n_cooling_sweeps):
                     x_cool = fn.metropolis_cooling(x_cool, a, delta_x, etha)
-                    n_inst, n_anti_inst, _, _ = fn.find_instantons(x_cool, a) #we only consider the number of instantons and anti-instantons
+                    n_inst, n_anti_inst, _, _ = fn.instantons_content(x_cool, a) #we only consider the number of instantons and anti-instantons
                     n_tot = n_inst+n_anti_inst
                     n_tot_sum[u] += n_tot
                     n2_tot_sum[u] += np.power(n_tot,2)
