@@ -18,7 +18,7 @@ def main():
     start = bool(input("Insert the desired start (0-cold, 1-hot): "))
     
     file_hist = open(output_path + '/histogram.txt', 'w')
-    x = fn.initialize_lattice(N, etha, start)
+    x = fn.lattice_inizialization(N, etha, start)
     
     for _ in range(n_equil): #equilibration runs for the metropolis algorithm
         x = fn.metropolis(x, a, delta_x, etha)
@@ -30,7 +30,7 @@ def main():
             n_inst = n_anti_inst = 0
             for _ in range(n_cooling_sweeps):
                 x_cool = fn.metropolis_cooling(x_cool, a, delta_x, etha)
-            n_inst, n_anti_inst, inst_pos, anti_inst_pos = fn.find_instantons(x_cool, a)
+            n_inst, n_anti_inst, inst_pos, anti_inst_pos = fn.instantons_content(x_cool, a)
             zia = 0
             if n_inst >0 and n_inst == n_anti_inst:
                 if inst_pos[0] < anti_inst_pos[0]:
