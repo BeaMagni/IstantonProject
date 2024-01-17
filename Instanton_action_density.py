@@ -20,7 +20,7 @@ def main():
     
     for etha in range(14,17,1):
         etha = etha/10 
-        x = fn.lattice_inizialization(N,etha,start)
+        x = fn.lattice_initialization(N,etha,start)
         n_tot_sum = np.zeros(n_cooling_sweeps)
         n2_tot_sum = np.zeros(n_cooling_sweeps)
         action_cooling = np.zeros(n_cooling_sweeps)
