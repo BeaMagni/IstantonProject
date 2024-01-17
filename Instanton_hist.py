@@ -18,7 +18,7 @@ def main():
     start = bool(input("Insert the desired start (0-cold, 1-hot): "))
     
     file_hist = open(output_path + '/histogram.txt', 'w')
-    x = fn.lattice_inizialization(N, etha, start)
+    x = fn.lattice_initialization(N, etha, start)
     
     for _ in range(n_equil): #equilibration runs for the metropolis algorithm
         x = fn.metropolis(x, a, delta_x, etha)
