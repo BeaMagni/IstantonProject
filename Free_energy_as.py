@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.integrate import simps #we use this integration function since it gives better results than others
+from scipy.integrate import simpson as simps #we use this integration function since it gives better results than others
 import General_functions as fn
 
 #monte carlo procedure in the adiabatic switching case
