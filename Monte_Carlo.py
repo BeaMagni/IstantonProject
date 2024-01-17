@@ -44,22 +44,23 @@ def main():
     
     for _ in range(n_equil): #equilibration runs for the metropolis algorithm
         x = fn.metropolis(x, a, delta_x, etha)
-    for j in range(n_sweeps - n_equil):
-      x = fn.metropolis(x, a, delta_x, etha)
-      if j%50 == 0: #we only save some of the configurations
-        np.savetxt(output_path + "/montecarlo_hist.txt", x)
-      for _ in range(5):
-        count += 1
-        p0 = int((N-30)*np.random.uniform(0.0,1.0)) #we consider a rescaled (based on the total number of lattice points) random number
-        for p in range(30):
-          x_cor = x[p0]*x[p0+p]
-          x_cor_sum[p] += x_cor
-          x2_cor_sum[p] += np.power(x_cor,2)
-          x3_cor_sum[p] += np.power(x_cor,3)
-          x_cor_sum2[p] += np.power(x_cor,2)
-          x2_cor_sum2[p] += np.power(x_cor,4)
-          x3_cor_sum2[p] += np.power(x_cor,6)
-    
+    with open(output_path + "/montecarlo_hist.txt", 'w') as hist:    
+        for j in range(n_sweeps - n_equil):
+          x = fn.metropolis(x, a, delta_x, etha)
+          if j%50 == 0: #we only save some of the configurations
+            np.savetxt(hist, x)
+          for _ in range(5):
+            count += 1
+            p0 = int((N-30)*np.random.uniform(0.0,1.0)) #we consider a rescaled (based on the total number of lattice points) random number
+            for p in range(30):
+              x_cor = x[p0]*x[p0+p]
+              x_cor_sum[p] += x_cor
+              x2_cor_sum[p] += np.power(x_cor,2)
+              x3_cor_sum[p] += np.power(x_cor,3)
+              x_cor_sum2[p] += np.power(x_cor,2)
+              x2_cor_sum2[p] += np.power(x_cor,4)
+              x3_cor_sum2[p] += np.power(x_cor,6)
+        
     x_cor_av, x_cor_err = fn.average_std(x_cor_sum, x_cor_sum2, count)
     x2_cor_av, x2_cor_err = fn.average_std(x2_cor_sum, x2_cor_sum2, count)
     x3_cor_av, x3_cor_err = fn.average_std(x3_cor_sum, x3_cor_sum2, count)
