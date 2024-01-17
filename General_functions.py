@@ -5,7 +5,7 @@ from pathlib import Path
 #this function creates the lattice, depending on the choice of hot or cold start
 
 @njit
-def lattice_inizialization(n, etha, start):
+def lattice_initialization(n, etha, start):
     if start is True:
         x = np.zeros(n)
         for k in range(n):
