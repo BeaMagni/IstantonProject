@@ -64,9 +64,9 @@ def main():
     x2_cor_av, x2_cor_err = fn.average_std(x2_cor_sum, x2_cor_sum2, count)
     x3_cor_av, x3_cor_err = fn.average_std(x3_cor_sum, x3_cor_sum2, count)
     der_log_x, der_log_x_err = fn.derivative_log(x_cor_av, x_cor_err, a)
-    x2_cor_av_sub = x2_cor_av-x2_cor_av[-1] #subtraction of th constant term
+    x2_cor_av_sub = x2_cor_av-x2_cor_av[-1] #subtraction of the constant term
     x2_cor_err_sub = np.sqrt(np.power(x2_cor_err,2)+np.power(x2_cor_err[-1],2))
-    der_log_x2, der_log_x2_err = fn.derivative_log(x2_cor_av_sub, x2_cor_err, a)
+    der_log_x2, der_log_x2_err = fn.derivative_log(x2_cor_av_sub, x2_cor_err_sub, a)
     der_log_x3, der_log_x3_err = fn.derivative_log(x3_cor_av, x3_cor_err, a)
 
     np.savetxt(output_path + '/x1_cor_av.txt',x_cor_av)
