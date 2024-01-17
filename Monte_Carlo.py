@@ -47,7 +47,7 @@ def main():
     with open(output_path + "/montecarlo_hist.txt", 'w') as hist:    
         for j in range(n_sweeps - n_equil):
           x = fn.metropolis(x, a, delta_x, etha)
-          if j%50 == 0: #we only save some of the configurations
+          if j%50 == 0: #we only save some of the configurations to avoid correlation between various configurations
             np.savetxt(hist, x)
           for _ in range(5):
             count += 1
